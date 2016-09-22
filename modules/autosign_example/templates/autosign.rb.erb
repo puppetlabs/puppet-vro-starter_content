@@ -1,0 +1,17 @@
+#!/opt/puppetlabs/puppet/bin/ruby
+
+require 'puppet/ssl'
+
+csr = Puppet::SSL::CertificateRequest.from_s(STDIN.read)
+valid_pass = '<%= @puppet_autosign_shared_secret %>'
+
+csr_pass = csr.custom_attributes.find do |a|
+  a['oid'] == 'challengePassword' or
+  a['oid'] == '1.2.840.113549.1.9.7'
+end
+
+if csr_pass['value'] == valid_pass
+  exit 0
+else
+  exit 1
+end

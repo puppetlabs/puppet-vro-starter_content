@@ -1,0 +1,5 @@
+# Puppet module that sets up shared-secret autosigning policy
+
+Apply this class to your master node, e.g. add to the PE Master group in the NC
+
+Depends on puppetlabs/inifile

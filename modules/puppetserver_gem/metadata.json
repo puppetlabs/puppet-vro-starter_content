@@ -1,0 +1,24 @@
+{
+  "name": "puppetlabs-puppetserver_gem",
+  "version": "0.2.0",
+  "author": "Puppet Labs",
+  "summary": "Puppet Labs Puppetserver Gem Module",
+  "license": "Licensed under (Apache 2.0)",
+  "source": "https://github.com/puppetlabs/puppetlabs-pe_puppetserver_gem",
+  "project_page": "https://github.com/puppetlabs/puppetlabs-puppetserver_gem",
+  "issues_url": "https://github.com/puppetlabs/puppetlabs-puppetserver_gem/issues",
+  "dependencies": [
+  
+  ],
+  "data_provider": null,
+  "requirements": [
+    {
+      "name": "pe",
+      "version_requirement": ">=4.0.0"
+    },
+    {
+      "name": "puppet",
+      "version_requirement": ">=4.0.0 < 5.0.0"
+    }
+  ]
+}
