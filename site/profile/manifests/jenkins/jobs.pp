@@ -1,0 +1,3 @@
+class profile::jenkins::jobs {
+
+}

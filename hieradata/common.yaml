@@ -1,0 +1,119 @@
+---
+puppet_enterprise::profile::master::check_for_updates: false
+
+splunk::params::version:  "6.0"
+splunk::params::build:    "182037"
+splunk::params::src_root: "http://master.inf.puppet.vm/demo_offline_splunk"
+
+preserved_users:
+  - 'pe-puppet'
+
+vsphere_provision::params::win2012r2_template: "/west1/vm/Templates/win2012-minimum"
+vsphere_provision::params::win2012r2_custspec: "win2012r2a-puppetagent_install"
+vsphere_provision::params::centos7_template: "/west1/vm/Templates/centos7"
+vsphere_provision::params::win2012r2_cpu_small: 1
+vsphere_provision::params::win2012r2_cpu_medium: 2
+vsphere_provision::params::win2012r2_cpu_large: 4
+vsphere_provision::params::win2012r2_memory_small: 2048
+vsphere_provision::params::win2012r2_memory_medium: 4096
+vsphere_provision::params::win2012r2_memory_large: 8192
+vsphere_provision::params::centos7_cpu_small: 1
+vsphere_provision::params::centos7_cpu_medium: 2
+vsphere_provision::params::centos7_cpu_large: 4
+vsphere_provision::params::centos7_memory_small: 512
+vsphere_provision::params::centos7_memory_medium: 1024
+vsphere_provision::params::centos7_memory_large: 4096
+vsphere_provision::params::vspherehost: "tse-vc1-prod.corp.puppetlabs.net"
+vsphere_provision::params::vspheredatacenter: "west1"
+vsphere_provision::params::vsphereusername: "testuser@vsphere.local"
+vsphere_provision::params::vspherepassword: "puppetlabs"
+
+tse_admins:
+  elizabeth:
+    longname: "Elizabeth Wittig"
+    group:
+      - 'tseadmin'
+      - 'wheel'
+    shell: '/bin/bash'
+    sshkeys:
+      - >
+        ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQClc9THfg8Sc+S1al5aqhrTx+o3HcU7N
+        GHMZmfeOgQXl+UkFSPnM3UjjL/gADNTVrqJdDSNSdq+aREpBFX7R4bLJUceAoNqdLLs4H
+        7xGS3ApDQteTVFMa5QpyUbS/3XffDnm5FKxXIQU+ybvGMZpSM+4s5yhroyAMvfhUNoIIT
+        SQV8bSdU+nwCp6aaE5fW+nZQlQV19jMHWZgQRQ+9uLjLjITriT3jk3aKQzKJrB5u+E4sD
+        twkMnnKFGBkXaH2MrgH0Z/KvNGFHnlzyQ3Byip5CEQmR4oNj1kQDconuoXkUfYy4czXw0
+        bMVqLhEKJfDc33Ftp5gmKeTjriXReCWo/ET elizabeth@puppetlabs.com
+  cbarker:
+    longname: "Chris Barker"
+    group:
+      - 'tseadmin'
+      - 'wheel'
+    shell: '/bin/bash'
+    sshkeys:
+      - >
+        ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDiuh3j8KLFJIR/39956ZhilKtMTr7iv
+        m9e6K4/pzU2Cqvg4pBeXPGglbJqz6TNnD+IL9PJefFwmNlxpim8ARY+h2zXN25SLhZzoM
+        3/wPqt9Q5+r0ylpdlXGLCilMl7m2OfBPhvNDm5DJSCQ9XwRvt0K66DvZ6A/43jchtt6xF
+        C7N9ZHCLXPFTeaEO19IyjGFtlS0eLpKRn9oVKAzwPOTKyuWD5aveHTlI0UqqZnY/aWvcq
+        6mA8yymmbxOm9AkXaAyMoirdoH+7pHuMWPUw0keQzBfwHsXbeRP+G4I0QyTUJgqioXFU1
+        bn4oDaprU1BP23F+agBedriewtiNewSqJWJ cbarker@puppetlabs.com
+      - >
+        ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCufvNyNaJo/wI2x3Goo86Qke9Lr9pIN
+        zhPLNXNqElcMTR4wrEM9134QNztfDFf+RYKTAKOWn/75d5zFxXQRm464Pay1Omx5Fh5sy
+        UWVSXGsMfWl9jWJYTxPlRon7opIGhCFFEO+87+7qMCA3wmERWvhEhionQA16qbMrGJ1Xb
+        q4oMX2vhMJjfgihj6rQefHIPwhR7rrfzNQclqWiq4hpTeEFvaq+xB8zMyzRLRQsyvWcSk
+        jOOiMeN9IwDLFVGM+pKZS/gFPvDGJNFdVHbNfu0AD2lvrE6WWjpa9retNnWy/XlEcYkYq
+        3NnWSNMKlDbo/3GtX0oLJSeHEWWy9mmWwUx
+      - >
+        ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDjUVxLLkCm6R5vDZVYZ+D1JkXFASoNv
+        jWKnLaGUY83KOBuQ5GzAlQwxrAs+T4aTHIsFsAlGBr2W0A79r9hiuCxNT8XNZrTOQ5fiD
+        JpyMyog2EvX3rQGqmOtvECjM0tZWu4dc6BbbmiGR88K6nzzZ1AgVhUQxmVktW6dCNbsrz
+        1coxzM2WxCXoMZX7FWHDKJc0uUJhlcWpT60zZHFq/Y7sZba1gFaKkFudi0om3oj0xRg1r
+        iMzOmPy70749DBG6sK1zpYiA7CG0Cwme/ytGVYl7T3XW4G5jBdWawtVpj2AslQfqbWfSZ
+        5Sgg52KKaM71F1vfcIOBIWXub5RDaHq5dsT chrisb@sneezingdog.com
+  reid:
+    longname: "Reid Vandewiele"
+    group:
+      - 'tseadmin'
+      - 'wheel'
+    shell: '/bin/bash'
+    sshkeys:
+      - >
+        ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDMlV83Evx6LhGFJ+hWKekION/ANE0E1
+        gbNSWaonT5dqGjzR/AzUraacr5VT7duvQ25fhOTvn7z/xbIsIFRn0pTN45L1v7sRuErcM
+        3jD8KCoUtyon85+gZlqnapKFbqx2ESAIt9cCqGabr3ITUB9Z10mjzfI1r/NX8C/o/8NwX
+        SIkytpA2OVh8jikaDg2sfLmD7Tt0CVUO3+QWVajY7nrIq42umNSEMWcy8wnLyz1l+WyCc
+        Ta6s56ouYtF4U5luRHRQuD3TNeBMu+mipocXFZ8ldcpFs5tOYTxTZv/riX81XaODRysW9
+        JTO59pwJ4zImM+RxgWa9zLIzwAqd852j9PmZnh72y5oIXAq4HYzBN7NIjCRdQntlGWATB
+        hN2c2h+UqevKTF8D3CRFxI5nCuoIE5FeHGySnueez07iCK3MiSjGmU9pbj2vu7DoJGnIy
+        VHzY/rGsPVLHKMyHmPwaKyGXlK4kcksval2u5ayTXeLJfD5Z/w2lhz3Y/os+jBzdo3gr7
+        J3OpyjC4f3HKandX4TE/MGsabz6IxL0VVL0yuztAH5MOi044VCOSNmXleAtB0Ls2HwaYS
+        V3WlNyA+Ro9p01dbARTfkC6mUXftpzxfwbcFKwhW8UMhgFM1b0yKeCbMF1s5qaQBscRXN
+        z7zKHLBe/fXBvuFm87D8m1Th+8Jmm29Q== reid-2014-04-17@puppetlabs.com
+  spencer:
+    longname: "Spencer Seebald"
+    group:
+      - 'tseadmin'
+      - 'wheel'
+    shell: '/bin/bash'
+    sshkeys:
+      - >
+        ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDfkNtm4Bpt/3vTYBviHIp4KuGGFYNpp
+        SKWCwmQH+PPhu86Qw7V4WVA7Rb+e7/pSkPSNss2F4aS89f0Ec3yQHPT4QK330t3VHmm6R
+        zqr8B8v+IAqQl9+aU1in8c2obMHXIDPg3xJa8ARoURLNA3/N7bvBf2X+gN1BiVxxuCj9r
+        08JqR+WKrQe0yl7GpDV6Fzij5THLm4rKqP8/Ie1f0XIYOsMDls0Mk1paku2fa5IZKRcwj
+        VZFS48WDnB/O/kKiVG+hlqX+EIcpY742di2Ud29LSeSl6aV0MI7ROitljB7n7sujfMe8A
+        35MERmdveJTYUIyG/Cki/gRqpgiSu3RP/Lp spencer.seebald@puppetlabs.com
+  jeremy:
+    longname: "Jeremy Adams"
+    group:
+      - 'tseadmin'
+    shell: '/bin/bash'
+    sshkeys:
+      - >
+        ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCpatn9tN9igrSTQ5SfOgaRULxh6gOW+
+        Ck9g0nqL8IaWxvOZ2jCCfot5914JFY0MOGt+YGUJwF1ILlwNVE8+7X3VZUxv5K5h8bDTf
+        lbNmzh1vdfvkinEmYILP4ns1zCNWutwiWsMo93A25AnsHT8+SFkKYF/ZS3g/7J9TdYlVq
+        FeyBNoyy/viw3EfN3fNk7g6cCGOqbNxj5OvMu8SqBOLjV8iMILSzaQ8BSXdd3Gd3ntc6j
+        e3rcpL/KihTb5X1b+3yyB22ZtlhgX0DYTfN6Xpdy/EzG1tt6vpiBFE4jXGRgJ/C56yi0m
+        j6lZZuvGTs2y9eU6rtaUaWoAlBbPHEBr08P jeremy@puppetlabs.com

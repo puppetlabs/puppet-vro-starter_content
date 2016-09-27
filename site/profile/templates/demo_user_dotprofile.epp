@@ -1,0 +1,16 @@
+<%- | String $demo_key_file | -%>
+PS1='[\u@\h \W]\$ '
+echo "ensuring that ssh-agent is running to hold key for gitlab..."
+ssh-add -l &>/dev/null
+if [ "$?" == 2 ]; then
+  test -r ~/.ssh-agent && \
+    eval "$(<~/.ssh-agent)" >/dev/null
+
+  ssh-add -l &>/dev/null
+  if [ "$?" == 2 ]; then
+    (umask 066; ssh-agent > ~/.ssh-agent)
+    eval "$(<~/.ssh-agent)" >/dev/null
+    echo "attempting to add private ssh key for gitlab..."
+    ssh-add <%= $demo_key_file -%>
+  fi
+fi

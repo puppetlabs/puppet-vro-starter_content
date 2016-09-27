@@ -1,0 +1,14 @@
+vms1:
+    - '/west1/vm/TSEs/kai/vm1'
+    - '/west1/vm/TSEs/kai/vm2'
+vms2:
+  '/west1/vm/TSEs/kai/vm3':
+    ensure: absent
+    source: '/west1/vm/Templates/centos7'
+    memory: 1024
+    cpus: 1
+  '/west1/vm/TSEs/kai/vm4':
+    ensure: absent
+    source: '/west1/vm/Templates/centos7'
+    memory: 1024
+    cpus: 1

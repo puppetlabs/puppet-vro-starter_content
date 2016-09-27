@@ -1,0 +1,18 @@
+db_name=<%= @ora_db_name %>
+memory_target=1G
+processes = 150
+audit_file_dest='<%= @oracle_base %>/admin/<%= @ora_db_name %>/adump'
+audit_trail ='db'
+db_block_size=8192
+db_domain='<%= @oracle_domain %>'
+db_recovery_file_dest='<%= @ora_rec_area_loc %>'
+db_recovery_file_dest_size=2G
+diagnostic_dest='<%= @oracle_base %>'
+dispatchers='(PROTOCOL=TCP) (SERVICE=ORCLXDB)'
+open_cursors=300
+remote_login_passwordfile='EXCLUSIVE'
+undo_tablespace='UNDOTBS1'
+control_files = (ora_control1, ora_control2)
+<% if  @ora_compatibile %>
+compatible ='<%= @ora_compatible %>'
+<% end %>

@@ -1,0 +1,31 @@
+{
+  "name": "seteam-role",
+  "version": "1.2.1",
+  "author": "Puppet Labs SE Team",
+  "summary": "Puppet Labs SE Team Role Module",
+  "license": "Apache-2.0",
+  "source": "git@github.com:puppetlabs-seteam/puppet-module-role.git",
+  "project_page": "https://github.com/puppetlabs-seteam/puppet-module-role",
+  "issues_url": "https://github.com/puppetlabs-seteam/puppet-module-role/issues",
+  "operatingsystem_support": [
+    {
+    "operatingsystem":"RedHat",
+    "operatingsystemrelease":[ "6.0", "7.0" ]
+    },
+    {
+    "operatingsystem":"CentOS",
+    "operatingsystemrelease":[ "6.0", "7.0" ]
+    },
+    {
+    "operatingsystem": "Ubuntu",
+    "operatingsystemrelease": [ "12.04", "14.04" ]
+    }
+   ],
+  "dependencies": [
+    {"name":"puppetlabs/firewall","version_requirement":">= 0.4.2"},
+    {"name":"puppetlabs/git","version_requirement":">= 0.0.3"},
+    {"name":"puppetlabs/inifile","version_requirement":">= 1.0.0"},
+    {"name":"seteam/profile","version_requirement":">= 0.0.1"},
+    {"name":"puppetlabs/apache","version_requirement":">= 0.9.0"}
+  ]
+}

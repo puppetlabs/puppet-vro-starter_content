@@ -1,0 +1,16 @@
+---
+# The location to use for storing cached Git repos
+:cachedir: '/var/cache/r10k'
+
+# A list of git repositories to create
+:sources:
+  # This will clone the git repository and instantiate an environment per
+  # branch in ${r10k_environments_dir}
+  :seteam:
+    remote:  '<%= @r10k_environments_remote %>'
+    basedir: '<%= @r10k_environments_dir %>'
+
+# This directory will be purged of any directory that doesn't map to a
+# git branch
+:purgedirs:
+  - '<%= @r10k_environments_dir %>'

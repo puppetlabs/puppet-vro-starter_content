@@ -1,0 +1,19 @@
+--- 
+
+# Tell Travis we don't use sudo so that we can use container infrastructure
+# for the builds.
+sudo: false
+
+# We're currently only using Travis CI for automatic Forge deployment. No real
+# test is run. This is specified here in order to override the default test.
+script: /bin/true
+
+deploy:
+  provider: puppetforge
+  user: seteam
+  password:
+    secure: "E+osfzjOrcEPY5wbagrZ5u1WuToKfXqjcu/fpBX5nEPvczz0Bii8KtCVDqbfnnODCWyqmzMkYMDEpFi5Jtn1HIWsMVtggd/cVkOh2y4x5y3q+w2W770hNNVxLQbPebjf6bWTjBZ0w6vAZH7/081o3UHSnSkPJ3qzgaSgY0y+ez8="
+  on:
+    tags: true
+    # all_branches is required to use tags
+    all_branches: true
