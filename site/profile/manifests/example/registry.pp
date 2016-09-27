@@ -15,12 +15,4 @@ class profile::example::registry {
     data         => '0xFFFFFFFF',
   }
 
-  # TODO: this resource has problems in Puppet 4+. Figure out and resolve.
-  #
-  # registry_value { 'HKLM\Software\Demonstration\value3':
-  #   ensure => present,
-  #   type   => array,
-  #   data   => [ 0, 'zero', '0', 123456, 'two' ],
-  # }
-
 }

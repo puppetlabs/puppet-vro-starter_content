@@ -12,71 +12,8 @@
 ## Active Configurations ##
 
 # Disable filebucket by default for all File resources:
+#http://docs.puppetlabs.com/pe/latest/release_notes.html#filebucket-resource-no-longer-created-by-default
 File { backup => false }
-
-# APP ORCHESTRATOR
-# Applications managed by App Orchestrator are defined in the site block.
-
-site {
-
-  # rgbank { 'dev':
-  #   nodes => {
-  #     Node['rgbank-dev.pdx.puppet.vm'] => [
-  #       Rgbank::Web['dev-0'],
-  #       Rgbank::Load['dev'],
-  #       Rgbank::Db['dev'],
-  #     ],
-  #   },
-  # }
-
-  # rgbank { 'staging':
-  #   web_count => 2,
-  #   nodes     => {
-  #     Node['rgbank-appserver-01.pdx.puppet.vm']    => [
-  #       Rgbank::Web['staging-0'],
-  #     ],
-  #     Node['rgbank-appserver-02.pdx.puppet.vm']    => [
-  #       Rgbank::Web['staging-1'],
-  #     ],
-  #     Node['rgbank-loadbalancer-01.pdx.puppet.vm'] => [
-  #       Rgbank::Load['staging'],
-  #     ],
-  #     Node['rgbank-database-01.pdx.puppet.vm']     => [
-  #       Rgbank::Db['staging'],
-  #     ],
-  #   },
-  # }
-
-
-  # zabbix_app { 'single':
-  #   zabbix_server_fqdn => 'centos6a.pdx.puppet.vm',
-  #   zabbix_web_fqdn    => 'centos6a.pdx.puppet.vm',
-  #   database_name      => 'zbx',
-  #   database_user      => 'zabbix',
-  #   database_password  => 'zabbix1',
-  #   nodes              => {
-  #     Node['centos6a.pdx.puppet.vm'] => [
-  #       Zabbix_app::Db['single'],
-  #       Zabbix_app::Web['single'],
-  #       Zabbix_app::Server['single']
-  #     ],
-  #   },
-  # }
-
-  # zabbix_app { 'multi':
-  #   zabbix_server_fqdn => 'centos6c.pdx.puppet.vm',
-  #   zabbix_web_fqdn    => 'centos6b.pdx.puppet.vm',
-  #   database_name      => 'zbx',
-  #   database_user      => 'zabbix',
-  #   database_password  => 'zabbix1',
-  #   nodes              => {
-  #     Node['centos6b.pdx.puppet.vm'] => Zabbix_app::Web['multi'],
-  #     Node['centos6c.pdx.puppet.vm'] => Zabbix_app::Server['multi'],
-  #     Node['centos6d.pdx.puppet.vm'] => Zabbix_app::Db['multi'],
-  #   },
-  # }
-
-}
 
 # DEFAULT NODE
 # Node definitions in this file are merged with node data from the console. See
@@ -92,14 +29,4 @@ node default {
   # This is where you can declare classes for all nodes.
   # Example:
   #   class { 'my_class': }
-
-  # Uncomment this to enable static catalog workflow:
-  # ini_setting { 'use_cached_catalog':
-  #   ensure  => present,
-  #   path    => $settings::config,
-  #   section => 'agent',
-  #   setting => 'use_cached_catalog',
-  #   value   => 'true',
-  # }
-
 }
