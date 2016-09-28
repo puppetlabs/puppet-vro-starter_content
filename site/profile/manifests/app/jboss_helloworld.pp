@@ -1,7 +1,7 @@
-class profile::app::jboss_helloworld (
-  $source = 'https://s3-us-west-2.amazonaws.com/tseteam/files/jboss-helloworld.war'
-) {
+class profile::app::jboss_helloworld {
+
   wildfly::deployment { 'jboss-helloworld.war':
-    source   => $source,
+    source   => 'puppet:///modules/profile/jboss-helloworld.war',
   }
+
 }

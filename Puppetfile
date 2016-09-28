@@ -46,7 +46,7 @@ mod 'puppetlabs/vcsrepo', '1.3.1'
 # Forge Community Modules
 
 mod 'camptocamp/archive', '0.8.1'
-mod 'chocolatey/chocolatey', '1.2.5'
+mod 'chocolatey/chocolatey', '1.2.6'
 mod 'andulla/dsc_collection', '0.2.2'
 mod 'ipcrm/echo', '0.1.3'
 mod 'stahnma/epel', '1.0.2'
@@ -56,25 +56,12 @@ mod 'lwf/remote_file', '1.1.0'
 mod 'nanliu/staging', '1.0.3'
 mod 'fiddyspence/sysctl', '1.1.0'
 mod 'reidmv/unzip', '0.1.2'
-mod 'biemond/wildfly', '0.5.2' # Wildfly / JBoss demo
+mod 'biemond/wildfly', '0.5.3' # Wildfly / JBoss demo
 mod 'badgerious/windows_env', '2.2.2'
 mod 'puppet/windows_firewall', '1.0.0'
 mod 'cyberious/windows_java', '1.0.2'
 mod 'puppet/windowsfeature', '1.1.0'
 mod 'hunner/wordpress', '1.0.0'
-
-# Git TSE modules - either maintained under seteam or by individual SE's
-
-mod 'cmsapp',
-  :git => 'git@github.com:puppetlabs/tse-module-cmsapp.git'
-
-# This fork of puppet/dotnet includes updates to allow .NET to be idempotently
-# ensured present on Server 2012, which has many .NET versions built-in. There
-# is a PR to merge these changes back to the original module. As soon as a 2.0
-# relase of puppet/dotnet is created we should be able to switch to that.
-mod 'dotnet',
-  :git => 'https://github.com/reidmv/puppet-dotnet.git',
-  :ref => 'c841b36081c22de7876d85af4debf0375731d1a5'
 
 mod 'openssh',
   :git => 'git@github.com:puppetlabs/tse-module-openssh.git',

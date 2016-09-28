@@ -1,5 +1,5 @@
 class profile::windows::baseline {
-  include profile::windows::chocolatey
+  include chocolatey
 
   reboot { 'baseline reboot for pending':
     when => pending,
