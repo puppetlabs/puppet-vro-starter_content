@@ -3,8 +3,8 @@ class profile::apache {
 
   $doc_root = '/var/www/generic_website'
 
-  if !defined(Package['unzip']) {
-    package { 'unzip': ensure => present; }
+  package { 'unzip':
+    ensure => present,
   }
 
   class { 'apache':
