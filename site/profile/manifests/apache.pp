@@ -1,4 +1,5 @@
-class profile::app::generic_website::linux {
+#
+class profile::apache {
 
   $doc_root = '/var/www/generic_website'
 
@@ -27,13 +28,6 @@ class profile::app::generic_website::linux {
     dport  => [80],
     proto  => tcp,
     action => accept,
-  }
-
-  staging::deploy { 'pl_generic_site.zip':
-    source  => 'puppet:///modules/profile/pl_generic_site.zip',
-    target  => $doc_root,
-    require => Apache::Vhost[$::fqdn],
-    creates => "${doc_root}/index.html",
   }
 
 }

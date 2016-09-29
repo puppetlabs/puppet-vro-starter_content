@@ -1,4 +1,5 @@
-class profile::app::generic_website::windows {
+#
+class profile::iis {
 
   $doc_root = 'C:\inetpub\wwwroot\generic_website'
 
@@ -24,11 +25,11 @@ class profile::app::generic_website::windows {
   }
 
   iis::manage_site { $::fqdn:
-    site_path   => $doc_root,
-    port        => '80',
-    ip_address  => '*',
-    app_pool    => 'generic_website',
-    require     => [
+    site_path  => $doc_root,
+    port       => '80',
+    ip_address => '*',
+    app_pool   => 'generic_website',
+    require    => [
       Windowsfeature['IIS'],
       Iis::Manage_app_pool['generic_website']
     ],
@@ -43,13 +44,6 @@ class profile::app::generic_website::windows {
     local_port   => '80',
     display_name => 'HTTP Inbound',
     description  => 'Inbound rule for HTTP Server - Port 80',
-  }
-
-  staging::deploy { 'pl_generic_site.zip':
-    source  => 'puppet:///modules/profile/pl_generic_site.zip',
-    target  => $doc_root,
-    require => Iis::Manage_site[$::fqdn],
-    creates => "${doc_root}/index.html",
   }
 
 }
