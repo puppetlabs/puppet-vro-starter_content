@@ -14,14 +14,6 @@
 
 forge "https://forgeapi.puppetlabs.com"
 
-# LOCAL MODULES
-# These modules are currently committed to the modules/ directory locally, but
-# should ideally be converted to regular module references to the Forge or to a
-# git repo.
-# mod 'rgbank', :local => true
-# mod 'http', :local => true
-# mod 'database', :local => true
-
 # PL Modules
 
 mod 'puppetlabs/apache', '1.10.0'

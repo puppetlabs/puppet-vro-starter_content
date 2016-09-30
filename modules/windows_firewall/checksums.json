@@ -1,0 +1,18 @@
+{
+  "CHANGELOG.md": "dff5b396cb76fc68f9123ebafa8475f5",
+  "CONTRIBUTING.md": "12283a454b778d0bbbe513ebbe072cd1",
+  "Gemfile": "d8915c26213295c001017a1ccd19f442",
+  "LICENSE": "a2b09ed4caa4c6b8fb25c294f01b3fc2",
+  "README.md": "57c7d810b73989d42ce8ea7a279d73e1",
+  "Rakefile": "16e1c669aa598c41e631243e039ff307",
+  "manifests/exception.pp": "2398ad01c5742ea1eb969371027710c6",
+  "manifests/init.pp": "763ceb994e3dd8866816374bc17b5210",
+  "metadata.json": "915ec99c32a847f037a073de85c5870d",
+  "spec/acceptance/nodesets/windows-2008R2-serverstandard-x64.yml": "50219eac8138cc5d1018c8a8b0ff2cdb",
+  "spec/classes/coverage_spec.rb": "c976704f4dc107fb0e6f7980ce99764a",
+  "spec/classes/windows_firewall/windows_firewall_spec.rb": "50acc5527dd363a02d300c1449a20b68",
+  "spec/defines/windows_firewall/exception_spec.rb": "88f7ef9bb9507fa4e5b4da2780d013d9",
+  "spec/spec.opts": "a600ded995d948e393fbe2320ba8e51c",
+  "spec/spec_helper.rb": "3baf53fa3bddc998ae6abdb7bbcce465",
+  "spec/spec_helper_acceptance.rb": "92a23c026ba6b863c2c5ceaaced4caa9"
+}
