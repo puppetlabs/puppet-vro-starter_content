@@ -1,7 +1,7 @@
 #
 class profile::apache {
 
-  $doc_root = '/var/www/generic_website'
+  $doc_root = '/var/www/sample_website'
 
   class { 'apache':
     default_vhost => false,
@@ -20,10 +20,12 @@ class profile::apache {
     require => File[$doc_root],
   }
 
-  firewall { '80 allow apache access':
-    dport  => [80],
-    proto  => tcp,
-    action => accept,
+  include firewalld
+  firewalld_port { 'Open port 80 for web':
+    ensure   => present,
+    zone     => 'public',
+    port     => 80,
+    protocol => 'tcp',
   }
 
 }

@@ -1,7 +1,7 @@
 #
 class profile::iis {
 
-  $doc_root = 'C:\inetpub\wwwroot\generic_website'
+  $doc_root = 'C:\inetpub\wwwroot\sample_website'
 
   windowsfeature { 'IIS':
     feature_name => [
@@ -17,7 +17,7 @@ class profile::iis {
     ensure => absent,
   }
 
-  iis::manage_app_pool {'generic_website':
+  iis::manage_app_pool {'sample_website':
     require => [
       Windowsfeature['IIS'],
       Iis::Manage_site['Default Web Site'],
@@ -28,10 +28,10 @@ class profile::iis {
     site_path  => $doc_root,
     port       => '80',
     ip_address => '*',
-    app_pool   => 'generic_website',
+    app_pool   => 'sample_website',
     require    => [
       Windowsfeature['IIS'],
-      Iis::Manage_app_pool['generic_website']
+      Iis::Manage_app_pool['sample_website']
     ],
   }
 
