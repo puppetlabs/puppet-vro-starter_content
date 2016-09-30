@@ -3,10 +3,6 @@ class profile::apache {
 
   $doc_root = '/var/www/generic_website'
 
-  package { 'unzip':
-    ensure => present,
-  }
-
   class { 'apache':
     default_vhost => false,
   }
