@@ -7,5 +7,10 @@ class profile::windows_baseline {
     ensure   => installed,
     provider => chocolatey,
   }
-  
+
+  package { 'git':
+    ensure   => installed,
+    provider => chocolatey,
+  }
+
 }

@@ -2,14 +2,11 @@
 class profile::linux_baseline {
 
   package { 'unzip':
-    ensure => present,
+    ensure => installed,
   }
 
-  case $::osfamily {
-    default: { } # for OS's not listed, do nothing
-    'RedHat': {
-      include epel
-    }
+  package { 'git':
+    ensure => installed,
   }
 
 }

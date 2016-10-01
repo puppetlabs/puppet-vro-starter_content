@@ -20,12 +20,12 @@ class profile::apache {
     require => File[$doc_root],
   }
 
-  include firewalld
-  firewalld_port { 'Open port 80 for web':
-    ensure   => present,
-    zone     => 'public',
-    port     => 80,
-    protocol => 'tcp',
-  }
+# Uncomment the following code to configure firewalld
+#  firewalld_port { 'Open port 80 for web':
+#    ensure   => present,
+#    zone     => 'public',
+#    port     => 80,
+#    protocol => 'tcp',
+#  }
 
 }

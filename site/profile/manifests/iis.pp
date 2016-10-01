@@ -34,16 +34,16 @@ class profile::iis {
       Iis::Manage_app_pool['sample_website']
     ],
   }
-
-  windows_firewall::exception { 'WINRM':
-    ensure       => present,
-    direction    => 'in',
-    action       => 'Allow',
-    enabled      => 'yes',
-    protocol     => 'TCP',
-    local_port   => '80',
-    display_name => 'HTTP Inbound',
-    description  => 'Inbound rule for HTTP Server - Port 80',
-  }
+# Uncomment the following code to configure windows firewall
+#  windows_firewall::exception { 'WINRM':
+#    ensure       => present,
+#    direction    => 'in',
+#    action       => 'Allow',
+#    enabled      => 'yes',
+#    protocol     => 'TCP',
+#    local_port   => '80',
+#    display_name => 'HTTP Inbound',
+#    description  => 'Inbound rule for HTTP Server - Port 80',
+#  }
 
 }
