@@ -2,15 +2,16 @@
 class profile::iis {
 
   $doc_root = 'C:\inetpub\wwwroot\sample_website'
+  $iis_features = [
+    'Web-Server',
+    'Web-WebServer',
+    'Web-Http-Redirect',
+    'Web-Mgmt-Console',
+    'Web-Mgmt-Tools'
+  ]
 
-  windowsfeature { 'IIS':
-    feature_name => [
-      'Web-Server',
-      'Web-WebServer',
-      'Web-Http-Redirect',
-      'Web-Mgmt-Console',
-      'Web-Mgmt-Tools',
-    ],
+  windowsfeature { $iis_features:
+    ensure => present,
   }
 
   iis::manage_site {'Default Web Site':
@@ -19,7 +20,7 @@ class profile::iis {
 
   iis::manage_app_pool {'sample_website':
     require => [
-      Windowsfeature['IIS'],
+      Windowsfeature[$iis_features],
       Iis::Manage_site['Default Web Site'],
     ],
   }
@@ -30,7 +31,7 @@ class profile::iis {
     ip_address => '*',
     app_pool   => 'sample_website',
     require    => [
-      Windowsfeature['IIS'],
+      Windowsfeature[$iis_features],
       Iis::Manage_app_pool['sample_website']
     ],
   }
