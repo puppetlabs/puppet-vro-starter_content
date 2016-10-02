@@ -21,6 +21,7 @@ mod 'puppetlabs/mysql', '3.9.0'
 mod 'puppetlabs/stdlib', '4.12.0'
 mod 'puppetlabs/chocolatey', '2.0.0'
 mod 'puppetlabs/concat', '2.2.0'
+mod 'puppetlabs/powershell', '2.0.2'
 
 # Forge Community Modules
 
@@ -28,6 +29,6 @@ mod 'crayfishx-firewalld', '3.1.4'
 mod 'puppet/iis', '2.0.2'
 mod 'reidmv/unzip', '0.1.2'
 mod 'puppet/windows_firewall', '1.0.3'
-mod 'puppet/windowsfeature', '2.0.0'
+mod 'puppet/windowsfeature', '1.1.0'
 mod 'stahnma/epel', '1.2.2'
 mod 'nanliu/staging', '1.0.3'
