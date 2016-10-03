@@ -1,0 +1,13 @@
+{
+  "CHANGELOG.md": "ec53d9da142022a6f3049365877de24f",
+  "Gemfile": "d9eab23d737058c9c7360106ab83ebd8",
+  "LICENSE": "35447b6f17aafd10a41cdd21230be2a8",
+  "README.md": "037dd4b2ae207fa8d6663063d0cf466f",
+  "lib/puppet/provider/package/puppetserver_gem.rb": "e1ed49d6b5dcad2cfcb984f4724c5c0b",
+  "metadata.json": "fbbaca170c4395dc3e6a4e46385ce4a2",
+  "spec/acceptance/nodesets/default.yml": "6600dc327bf4c67d337c4be6268eb732",
+  "spec/acceptance/puppetserver_gem_spec.rb": "ee160dbb84a178ae3de0385525d4863b",
+  "spec/spec.opts": "a600ded995d948e393fbe2320ba8e51c",
+  "spec/spec_helper_acceptance.rb": "990029fd8c29b04849f376d27569c311",
+  "tests/init.pp": "55a16da8a0ec1352a722ba2fcf301fa7"
+}
