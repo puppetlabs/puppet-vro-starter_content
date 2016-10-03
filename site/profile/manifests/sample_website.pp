@@ -4,6 +4,7 @@ class profile::sample_website {
   case $::kernel {
     'windows': {
       require profile::iis
+      require profile::windows_baseline
       staging::deploy { 'sample_website.zip':
         source  => 'puppet:///modules/profile/sample_website.zip',
         target  => 'C:\inetpub\wwwroot\sample_website',
@@ -12,6 +13,7 @@ class profile::sample_website {
     }
     'linux':   {
       require profile::apache
+      require profile::linux_baseline
       staging::deploy { 'sample_website.zip':
         source  => 'puppet:///modules/profile/sample_website.zip',
         target  => '/var/www/sample_website',
