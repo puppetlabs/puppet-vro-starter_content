@@ -9,11 +9,11 @@ class profile::vro_provisioned {
     'windows': {
       $agent_confdir = 'C:/ProgramData/PuppetLabs/puppet/etc'
 
-      exec { 'rename-Administrator':
-        command   => '$(Get-WMIObject Win32_UserAccount -Filter "Name=\'Administrator\'").Rename("puppet#adm1n")',
-        unless    => 'if (Get-WmiObject Win32_UserAccount -Filter "Name=\'Administrator\'") { exit 1 }',
-        provider  => powershell,
-      }
+      #exec { 'rename-Administrator':
+      #  command   => '$(Get-WMIObject Win32_UserAccount -Filter "Name=\'Administrator\'").Rename("puppet#adm1n")',
+      #  unless    => 'if (Get-WmiObject Win32_UserAccount -Filter "Name=\'Administrator\'") { exit 1 }',
+      #  provider  => powershell,
+      #}
 
     }
     default: {}
