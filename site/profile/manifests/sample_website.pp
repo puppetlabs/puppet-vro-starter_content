@@ -2,9 +2,7 @@
 class profile::sample_website {
 
   case $::kernel {
-    'windows': {
-      require profile::iis
-      
+    'windows': {      
       $staging_dir = 'C:\staging'
 
       file { $staging_dir:
@@ -21,9 +19,6 @@ class profile::sample_website {
       }
     }
     'linux':   {
-      require profile::linux_baseline
-      require profile::apache
-      
       staging::deploy { 'sample_website.zip':
         source  => 'puppet:///modules/profile/sample_website.zip',
         target  => '/var/www/sample_website',
