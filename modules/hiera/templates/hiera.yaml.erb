@@ -1,0 +1,34 @@
+# managed by puppet
+---
+:backends:
+<% if @eyaml
+  @backends.unshift('eyaml')
+  @backends = @backends.uniq
+end -%>
+<%= @backends.to_yaml.split("\n")[1..-1].map{|e| "  #{e.strip}"}.join("\n") %>
+
+:logger: <%= @logger %>
+
+:hierarchy:
+<%= @hierarchy.to_yaml.split("\n")[1..-1].map{|e| "  #{e.strip}"}.join("\n") %>
+
+:yaml:
+  :datadir: <%= @datadir %>
+<% if @eyaml -%>
+
+:eyaml:
+  :datadir: <%= @eyaml_real_datadir %>
+<% if @eyaml_extension -%>
+  :extension: <%= @eyaml_extension %>
+<% end -%>
+  :pkcs7_private_key: <%= @_keysdir %>/private_key.pkcs7.pem
+  :pkcs7_public_key:  <%= @_keysdir %>/public_key.pkcs7.pem
+<% end -%>
+<% if @merge_behavior -%>
+
+:merge_behavior: <%= @merge_behavior -%>
+<% end -%>
+<% if @extra_config && !@extra_config.empty? -%>
+
+<%= @extra_config %>
+<% end -%>
