@@ -6,10 +6,19 @@ class profile::sample_website {
       require profile::windows_baseline
       require profile::iis
       
-      staging::deploy { 'sample_website.zip':
+      $staging_dir = 'C:\staging'
+
+      file { $staging_dir:
+        ensure => directory,
+      }
+      file { "${staging_dir}\\sample_website.zip":
+        ensure => file,
         source  => 'puppet:///modules/profile/sample_website.zip',
-        target  => 'C:\inetpub\wwwroot\sample_website',
-        creates => 'C:\inetpub\wwwroot\sample_website\index.html',
+      }
+      unzip { 'sample_website.zip':
+        source      => "${staging_dir}\\sample_website.zip",
+        destination => 'C:\inetpub\wwwroot\sample_website',
+        creates     => 'C:\inetpub\wwwroot\sample_website\index.html',
       }
     }
     'linux':   {
