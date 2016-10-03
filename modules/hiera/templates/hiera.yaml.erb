@@ -5,12 +5,12 @@
   @backends.unshift('eyaml')
   @backends = @backends.uniq
 end -%>
-<%= @backends.to_yaml.split("\n")[1..-1].map{|e| "  #{e.strip}"}.join("\n") %>
+<%= @backends.map{|x| "  - #{x}"}.join("\n") %>
 
 :logger: <%= @logger %>
 
 :hierarchy:
-<%= @hierarchy.to_yaml.split("\n")[1..-1].map{|e| "  #{e.strip}"}.join("\n") %>
+<%= @hierarchy.map{|x| x  =~ /%/ ? "  - \"#{x}\"" : "  - #{x}"}.join("\n") %>
 
 :yaml:
   :datadir: <%= @datadir %>
@@ -21,13 +21,26 @@ end -%>
 <% if @eyaml_extension -%>
   :extension: <%= @eyaml_extension %>
 <% end -%>
-  :pkcs7_private_key: <%= @_keysdir %>/private_key.pkcs7.pem
-  :pkcs7_public_key:  <%= @_keysdir %>/public_key.pkcs7.pem
+  :pkcs7_private_key: <%= @_eyaml_pkcs7_private_key %>
+  :pkcs7_public_key:  <%= @_eyaml_pkcs7_public_key %>
+<% end -%>
+<% if @eyaml_gpg -%>
+  :encrypt_method: "gpg"
+  :gpg_gnupghome: "<%= @_keysdir-%>/gpg"
+<% if @eyaml_gpg_recipients -%>
+  :gpg_recipients: "<%= @eyaml_gpg_recipients %>"
+<% end -%>
 <% end -%>
 <% if @merge_behavior -%>
 
-:merge_behavior: <%= @merge_behavior -%>
+:merge_behavior: <%= @merge_behavior %>
 <% end -%>
+<% if @merge_behavior == 'deep' && !@deep_merge_options.empty? -%>
+:deep_merge_options:
+  <%- @deep_merge_options.each do |option_key, option_value| -%>
+  :<%= option_key %>: <%= option_value %>
+  <%- end -%>
+<%- end -%>
 <% if @extra_config && !@extra_config.empty? -%>
 
 <%= @extra_config %>
