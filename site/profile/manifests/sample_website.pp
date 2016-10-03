@@ -1,29 +1,50 @@
 #
 class profile::sample_website {
 
-  case $::kernel {
-    'windows': {      
-      $staging_dir = 'C:\staging'
+  $source_dir = 'puppet:///modules/profile/sample_website'
 
-      file { $staging_dir:
-        ensure => directory,
+  case $::kernel {
+    'windows': {
+      $destination_dir = 'C:\inetpub\wwwroot\sample_website'
+
+      file { $destination_dir:
+        ensure  => directory,
       }
-      file { "${staging_dir}\\sample_website.zip":
-        ensure => file,
-        source  => 'puppet:///modules/profile/sample_website.zip',
+
+      file { 'sample website content':
+        path    => $destination_dir,
+        source  => $source_dir,
+        recurse => true,
       }
-      unzip { 'sample_website.zip':
-        source      => "${staging_dir}\\sample_website.zip",
-        destination => 'C:\inetpub\wwwroot\sample_website',
-        creates     => 'C:\inetpub\wwwroot\sample_website\index.html',
-      }
+
     }
     'linux':   {
-      staging::deploy { 'sample_website.zip':
-        source  => 'puppet:///modules/profile/sample_website.zip',
-        target  => '/var/www/sample_website',
-        creates => '/var/www/sample_website/index.html',
+      $destination_dir = '/var/www/sample_website'
+
+      file { $destination_dir:
+        ensure  => directory,
       }
+
+      file { 'sample website content':
+        path    => $destination_dir,
+        source  => $source_dir,
+        recurse => true,
+      }
+
+    }
+    'Darwin':   {
+      $destination_dir = '/User/abir/Desktop/sample_website'
+
+      file { $destination_dir:
+        ensure  => directory,
+      }
+
+      file { 'sample website content':
+        path    => $destination_dir,
+        source  => $source_dir,
+        recurse => true,
+      }
+
     }
     default: { }
   }

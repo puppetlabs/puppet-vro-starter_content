@@ -27,7 +27,6 @@ mod 'puppetlabs-powershell', '2.0.2'
 
 mod 'crayfishx-firewalld', '3.1.4'
 mod 'puppet-iis', '2.0.2'
-mod 'puppet-staging', '2.0.1'
 mod 'puppet-windows_firewall', '1.0.3'
 mod 'puppet-windowsfeature', '2.0.0'
 mod 'reidmv-unzip', '0.1.2'
