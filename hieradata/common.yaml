@@ -1,1 +1,5 @@
 ---
+profile::sample_website::doc_root:'/var/www/sample_website'
+profile::sample_website::source_dir:'puppet:///modules/profile/sample_website'
+profile::sample_data::database_source: 'puppet:///modules/profile/sample_data.sql'
+webserver_port: 80

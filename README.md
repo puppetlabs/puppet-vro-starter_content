@@ -3,7 +3,7 @@
 Installation with git
 ```
 cd /etc/puppetlabs/code/environments/production; rm -rf *
-git clone git@github.com:puppetlabs/puppet-vro-starter_content.git /etc/puppetlabs/code/environments/ .
+git clone git@github.com:puppetlabs/puppet-vro-starter_content.git /etc/puppetlabs/code/environments/
 ```
 
 Installation with curl https://github.com/settings/tokens

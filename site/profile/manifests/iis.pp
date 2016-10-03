@@ -1,7 +1,7 @@
 #
 class profile::iis {
 
-  $doc_root = 'C:\inetpub\wwwroot\sample_website'
+  $doc_root = $profile::sample_website::doc_root
   $iis_features = [
     'Web-Server',
     'Web-WebServer',
@@ -27,7 +27,7 @@ class profile::iis {
 
   iis::manage_site { $::fqdn:
     site_path  => $doc_root,
-    port       => '80',
+    port       => "${webserver_port}",
     ip_address => '*',
     app_pool   => 'sample_website',
     require    => [
@@ -42,9 +42,9 @@ class profile::iis {
     action       => 'Allow',
     enabled      => 'yes',
     protocol     => 'TCP',
-    local_port   => '80',
+    local_port   => "${webserver_port}",
     display_name => 'HTTP Inbound',
-    description  => 'Inbound rule for HTTP Server - Port 80',
+    description  => 'Inbound rule for HTTP Server',
   }
 
 }

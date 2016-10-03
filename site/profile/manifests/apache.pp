@@ -1,7 +1,7 @@
 #
 class profile::apache {
 
-  $doc_root = '/var/www/sample_website'
+  $doc_root = $profile::sample_website::doc_root
 
   class { 'apache':
     default_vhost => false,
@@ -15,15 +15,15 @@ class profile::apache {
   }
 
   apache::vhost { $::fqdn:
-    port    => '80',
+    port    => "${webserver_port}",
     docroot => $doc_root,
     require => File[$doc_root],
   }
 
-  firewalld_port { 'Open port 80 for web':
+  firewalld_port { 'Open port for web':
     ensure   => present,
     zone     => 'public',
-    port     => 80,
+    port     => $webserver_port,
     protocol => 'tcp',
   }
 

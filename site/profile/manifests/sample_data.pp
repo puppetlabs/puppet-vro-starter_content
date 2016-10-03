@@ -3,7 +3,7 @@ class profile::sample_data {
 
   file { '/tmp/sample_data.sql':
       ensure => file,
-      source => 'puppet:///modules/profile/sample_data.sql',
+      source => $profile::sample_data::database_source,
     }
 
     mysql::db { 'mydb':
