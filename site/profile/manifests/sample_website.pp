@@ -3,7 +3,6 @@ class profile::sample_website {
 
   case $::kernel {
     'windows': {
-      require profile::windows_baseline
       require profile::iis
       
       $staging_dir = 'C:\staging'
