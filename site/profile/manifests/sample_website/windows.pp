@@ -41,7 +41,7 @@ class profile::sample_website::windows (
     recurse => true,
   }
 
-  file { "${website_source_dir}/index.html":
+  file { "${doc_root}/index.html":
     ensure  => file,
     content => epp('profile/index.html.epp'),
   }
