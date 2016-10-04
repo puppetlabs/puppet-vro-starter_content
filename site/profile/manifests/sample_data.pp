@@ -3,9 +3,6 @@ class profile::sample_data (
     $database_content
 ) {
 
-
-  notify {"------database_content: ${database_content}":}
-
   file { '/tmp/sample_data.sql':
       ensure => file,
       source => $database_content,
