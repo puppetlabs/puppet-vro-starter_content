@@ -1,7 +1,7 @@
 #
 class profile::sample_website::linux (
     $doc_root,
-    $webserver_port
+    $webserver_port,
 ) {
 
   file { $doc_root:

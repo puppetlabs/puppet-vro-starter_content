@@ -1,7 +1,7 @@
 #
 class profile::sample_website::windows (
     $doc_root,
-    $webserver_port
+    $webserver_port,
 ) {
   iis::manage_app_pool {'sample_website':
     require => [
