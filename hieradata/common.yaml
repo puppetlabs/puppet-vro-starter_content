@@ -1,6 +1,10 @@
 ---
-role::linux_webserver::webserver_port : 80
-role::linux_webserver::doc_root : '/var/www/sample_website'
-role::windows_webserver::webserver_port : 80
-role::windows_webserver::doc_root : '/var/www/sample_website'
+profile::sample_website::windows::webserver_port: 80
+profile::sample_website::windows::doc_root: 'C:\inetpub\wwwroot\sample_website'
+
+profile::sample_website::linux::webserver_port: 80
+profile::sample_website::linux::doc_root: '/var/www/sample_website'
+
+website_source_dir:'puppet:///modules/profile/sample_website'
+
 profile::sample_data::database_content: 'puppet:///modules/profile/sample_data.sql'

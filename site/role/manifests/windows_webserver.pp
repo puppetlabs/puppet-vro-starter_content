@@ -1,14 +1,9 @@
 #
-class role::windows_webserver (
-    $webserver_port,
-    $doc_root,
-) {
+class role::windows_webserver {
+
   include profile::windows_baseline
-  class { 'profile::iis':
-    webserver_port => $webserver_port
-  }
-  class { 'profile::sample_website':
-    doc_root       => $doc_root
-    webserver_port => $webserver_port
-  }
+  include profile::vro_provisioned
+  include profile::iis
+  include profile::sample_website
+
 }

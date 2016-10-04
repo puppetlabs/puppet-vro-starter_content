@@ -1,7 +1,5 @@
 # Installs iis and opens port in firewall
-class profile::iis (
-  $webserver_port
-) {
+class profile::iis {
 
   $iis_features = [
     'Web-Server',
@@ -17,17 +15,6 @@ class profile::iis (
 
   iis::manage_site {'Default Web Site':
     ensure => absent,
-  }
-
-  windows_firewall::exception { 'WINRM':
-    ensure       => present,
-    direction    => 'in',
-    action       => 'Allow',
-    enabled      => 'yes',
-    protocol     => 'TCP',
-    local_port   => '$webserver_port',
-    display_name => 'HTTP Inbound',
-    description  => 'Inbound rule for HTTP Server',
   }
 
 }
