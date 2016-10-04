@@ -4,13 +4,6 @@ class profile::sample_website::linux (
     $webserver_port,
 ) {
 
-  file { $doc_root:
-    ensure => directory,
-    owner  => $::apache::user,
-    group  => $::apache::group,
-    mode   => '0755',
-  }
-
   apache::vhost { $::fqdn:
     port    => $webserver_port,
     docroot => $doc_root,
@@ -28,6 +21,9 @@ class profile::sample_website::linux (
 
   file { $website_source_dir:
     ensure  => directory,
+    owner   => $::apache::user,
+    group   => $::apache::group,
+    mode    => '0755',
     path    => $doc_root,
     source  => $website_source_dir,
     recurse => true,
