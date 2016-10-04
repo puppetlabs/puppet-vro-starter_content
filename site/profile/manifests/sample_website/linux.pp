@@ -26,7 +26,7 @@ class profile::sample_website::linux (
 
   $website_source_dir  = lookup('website_source_dir')
 
-  file { $destination_dir:
+  file { $website_source_dir:
     ensure  => directory,
     path    => $doc_root,
     source  => $website_source_dir,
