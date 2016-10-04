@@ -1,9 +1,11 @@
-#
-class profile::sample_data {
+# Installs sample database
+class profile::sample_data (
+    $database_content
+) {
 
   file { '/tmp/sample_data.sql':
       ensure => file,
-      source => $profile::sample_data::database_source,
+      source => $database_content,
     }
 
     mysql::db { 'mydb':

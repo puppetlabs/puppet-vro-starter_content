@@ -1,7 +1,15 @@
 #
-class role::linux_webserver {
+class role::linux_webserver (
+    $webserver_port,
+    $doc_root,
+) {
   include profile::linux_baseline
   include profile::vro_provisioned
-  include profile::apache
-  include profile::sample_website
+  class { 'profile::apache':
+    webserver_port => $webserver_port
+  }
+  class { 'profile::sample_website':
+    doc_root       => $doc_root
+    webserver_port => $webserver_port
+  }
 }
