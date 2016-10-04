@@ -32,7 +32,7 @@ class profile::sample_website::windows (
     description  => 'Inbound rule for HTTP Server',
   }
 
-  $website_source_dir  = lookup('website_content')
+  $website_source_dir  = lookup('website_source_dir')
 
   file { $destination_dir:
     ensure  => directory,

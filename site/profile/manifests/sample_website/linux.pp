@@ -24,7 +24,7 @@ class profile::sample_website::linux (
     protocol => 'tcp',
   }
 
-  $website_source_dir  = lookup('website_content')
+  $website_source_dir  = lookup('website_source_dir')
 
   file { $destination_dir:
     ensure  => directory,
