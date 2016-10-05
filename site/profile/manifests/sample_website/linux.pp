@@ -3,7 +3,8 @@ class profile::sample_website::linux (
     $doc_root,
     $webserver_port,
 ) {
-
+  include apache
+  
   apache::vhost { $::fqdn:
     port    => $webserver_port,
     docroot => $doc_root,
