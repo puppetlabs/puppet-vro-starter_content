@@ -3,8 +3,9 @@ class profile::sample_website::linux (
     $doc_root,
     $webserver_port,
 ) {
-  include apache
-  
+  require profile::apache
+
+  # configure apache
   apache::vhost { $::fqdn:
     port    => $webserver_port,
     docroot => $doc_root,
@@ -18,6 +19,7 @@ class profile::sample_website::linux (
     protocol => 'tcp',
   }
 
+  # deploy website
   $website_source_dir  = lookup('website_source_dir')
 
   file { $website_source_dir:

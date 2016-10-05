@@ -1,4 +1,4 @@
-# Installs iis and opens port in firewall
+# Installs iis
 class profile::iis {
 
   $iis_features = [

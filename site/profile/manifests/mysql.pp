@@ -1,8 +1,8 @@
 #
 class profile::mysql {
 
-  include mysql::server
-  include mysql::bindings
-  include mysql::bindings::php
+  class { 'mysql::server':
+    remove_default_accounts => true
+  }
 
 }

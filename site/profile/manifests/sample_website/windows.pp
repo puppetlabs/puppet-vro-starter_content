@@ -3,6 +3,9 @@ class profile::sample_website::windows (
     $doc_root,
     $webserver_port,
 ) {
+  require profile::iis
+
+  # configure iis
   iis::manage_app_pool {'sample_website':
     require => [
       Windowsfeature[$iis_features],
@@ -32,6 +35,7 @@ class profile::sample_website::windows (
     description  => 'Inbound rule for HTTP Server',
   }
 
+  # deploy website
   $website_source_dir  = lookup('website_source_dir')
 
   file { $website_source_dir:

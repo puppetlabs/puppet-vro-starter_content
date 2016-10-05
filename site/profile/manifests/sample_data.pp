@@ -4,6 +4,8 @@ class profile::sample_data (
     $database_name,
 ) {
 
+  include mysql::server
+
   file { '/tmp/sample_data.sql':
       ensure => file,
       source => $database_content,
