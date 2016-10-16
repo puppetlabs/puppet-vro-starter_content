@@ -1,62 +1,36 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="/favicon.ico">
+<html>
 
-    <title>Puppet Example Site</title>
+<head>
+    <title>Sample Website</title>
+    <link rel="stylesheet" type="text/css" href="css/main.css">
+</head>
 
-    <!-- Bootstrap core CSS -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-
-    <!-- Custom styles for this template -->
-    <link href="css/cover.css" rel="stylesheet">
-
-    <!-- jQuery -->
-    <script src="js/jquery-2.1.4.min.js"></script>
-
-    <!-- Site Script -->
-    <script type="text/javascript" >
-      $(document).ready(function () {
-          $('div.jfadeInOut.one').delay(1000).fadeIn(1000).delay(4000).fadeOut(1000);
-          $('div.jfadeInOut.two').delay(8000).fadeIn(1000).delay(4000).fadeOut(1000);
-          $('div.jfadeIn.three').delay(15000).fadeIn(2000);
-      });
-    </script>
-  </head>
-  <body>
-    <h2>Welcome to <%= $fqdn %></h2>    
-    <div class="site-wrapper">
-      <div class="site-wrapper-inner">
-        <div class="cover-container">
-              <a href="."><img class="logo_img fade-in one" src="img/logo.png" alt="Puppet Sample Image" /></a>
-          <div class="masthead clearfix">
-            <div class="inner">
-            </div>
-          </div>
-
-          <div class ="pl_content">
-            <!-- No Script -->
-            <noscript>
-                <h1 style="color: white">JavaScript is disabled. Please enable to view content.</h1>
-            </noscript>
-            <div class="jfadeInOut one"> <img src="img/one.png" alt="Puppet" /> </div>
-            <div class="jfadeInOut two"> <img src="img/two.png" alt="Puppet" /> </div>
-            <div class="jfadeIn three"> <img src="img/three.png" alt="Puppet" /> </div>
-          </div>
-
-          <div class="mastfoot">
-            <div class="inner">
-            </div>
-          </div>
+<body>
+    <div class="container">
+        <div class="blurb">
+          <% if $kernel == 'windows' { -%>
+            <img src="img/windows.png" height="128" width="128" />
+          <% } elsif $kernel == 'Linux' { -%>
+            <img src="img/tux.png" height="128" width="128" />
+            <% } elsif $kernel == 'Darwin' { -%>
+              <img src="img/apple.png" height="128" width="128" />
+            <% } -%>
+            <h1>System Info </h1>
+            <p>fqdn/certname:
+                <%= $trusted[certname] %>
+            </p>
+            <p>ip address:
+                <%= $networking[ip] %>
+            </p>
+            <p>total system memory:
+                <%= $memory[system][total] %>
+            </p>
+            <p>vm uuid:
+                <%= $trusted[extensions][pp_uuid] %>
+            </p>
         </div>
-      </div>
     </div>
-  </body>
+</body>
+
 </html>
