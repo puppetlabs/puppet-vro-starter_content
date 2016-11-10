@@ -34,3 +34,6 @@ mod 'stahnma-epel', '1.2.2'
 
 mod 'autosign_example',
   :git => 'https://github.com/puppetlabs/puppet-vro-autosign_example'
+
+mod 'vro_plugin_user',
+  :git => 'https://github.com/puppetlabs/puppet-vro-vro_plugin_user'

@@ -1,0 +1,58 @@
+<%- | String $username,
+      String $password,
+      String $rolename,
+      String $touchfile,
+      Array  $permissions = [],
+| -%>
+require 'json'
+require 'net/smtp'
+
+#########################
+## Helpers
+#########################
+create_username = '<%= $username -%>'
+create_password = '<%= $password -%>'
+puppet = '/opt/puppetlabs/bin/puppet'
+$console_server  = 'localhost'
+$cacert, $cert, $key = %x{#{puppet} config print localcacert hostcert hostprivkey}.gsub(/\w+ = /, '').split("\n")
+
+def rbac_rest_call (method, endpoint, json='', api_ver='v1')
+  cmd = "curl -s -k -X #{method} -H 'Content-Type: application/json' \
+    -d \'#{json}\' \
+    --cacert #{$cacert} \
+    --cert   #{$cert} \
+    --key    #{$key} \
+    https://#{$console_server}:4433/rbac-api/#{api_ver}/#{endpoint}".delete("\n")
+  resp = %x(#{cmd})
+  ## don't know if api call succeeded, only if curl worked or not
+  unless $?.success?
+    raise "curl rest call failed: #{$?}"
+  end
+  resp
+end
+
+#########################
+## Create user
+#########################
+user = {
+  'login' => "#{create_username}",
+  'display_name' => "#{create_username}",
+  'password' => "#{create_password}",
+  'email' => '',
+  'role_ids' => []
+}
+rbac_rest_call('POST', 'users', JSON.generate(user).to_s)
+id = JSON.parse(rbac_rest_call('GET', 'users')).find {|j| j['login']=="#{create_username}"}['id']
+
+role = {
+  'display_name' => '<%= $rolename -%>',
+  'description' => '',
+  'group_ids' => [],
+  'user_ids' => ["#{id}"],
+  'permissions' => JSON.parse("<%= $permissions -%>".gsub(/([_a-z*]+)/, '"\1"').gsub('=>', ':'))
+}
+rbac_rest_call('POST', 'roles', JSON.generate(role).to_s)
+
+touchfile = open('<%= $touchfile -%>', 'w')
+touchfile.write("created\n")
+touchfile.close
