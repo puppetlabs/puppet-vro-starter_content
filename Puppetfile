@@ -22,7 +22,9 @@ mod 'puppetlabs-puppetserver_gem', '0.2.0'
 
 # Forge Community Modules
 
-mod 'crayfishx-firewalld', '3.1.4'
+#mod 'crayfishx-firewalld', '3.1.4'
+mod 'nohtyp-myfirewall', '1.0.9'
+
 mod 'puppet-iis', '2.0.2'
 mod 'puppet-windows_firewall', '1.0.3'
 mod 'puppet-windowsfeature', '2.0.0'
