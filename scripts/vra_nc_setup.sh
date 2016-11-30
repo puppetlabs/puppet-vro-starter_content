@@ -26,7 +26,7 @@ autosign_and_user_group_id='235a97b3-949b-48e0-8e8a-000000000999'
 #
 find_guid()
 {
-  echo $(curl --silent https://$master_hostname:4433/classifier-api/v1/groups --cert $cert --key $key --cacert $cacert | python -m json.tool |grep -C 2 "$1" | grep "id" | cut -d: -f2 | sed 's/[\", ]//g')
+  echo $(curl -s https://$master_hostname:4433/classifier-api/v1/groups --cert $cert --key $key --cacert $cacert | python -m json.tool |grep -C 2 "$1" | grep "id" | cut -d: -f2 | sed 's/[\", ]//g')
 }
 echo Puppet Master Setup Script
 echo --------------------------
@@ -69,20 +69,20 @@ if [ ! -f /etc/puppetlabs/code/environments/$alternate_environment/modules/vro_p
   exit 1
 fi
 # Put a copy in production
-echo 'Replacing production with $alternate_environment contents'
+echo "Replacing production with $alternate_environment contents"
 rm -rf /etc/puppetlabs/code/environments/production/
 cp -R /etc/puppetlabs/code/environments/$alternate_environment /etc/puppetlabs/code/environments/production
 #
 # Tell the NC to refresh its cache so that the classes we just installed are available
 #
 echo "Refreshing NC class lists for production and $alternate_environment puppet environments"
-curl -X POST -H "Content-Type: application/json" \
+curl -s -X POST -H "Content-Type: application/json" \
 --key    $key \
 --cert   $cert \
 --cacert $cacert \
 https://$master_hostname:4433/classifier-api/v1/update-classes?environment=production
 [ "$?" = 0 ] && echo "Successful refresh of production environment."
-curl -X POST -H "Content-Type: application/json" \
+curl -s -X POST -H "Content-Type: application/json" \
 --key    $key \
 --cert   $cert \
 --cacert $cacert \
@@ -92,7 +92,7 @@ https://$master_hostname:4433/classifier-api/v1/update-classes?environment=$alte
 # Create an "Autosign and vRO Plugin User" classification group to set up autosign example and vro-plugin-user
 #
 echo "Creating the Autosign and vRO Plugin User group"
-curl -X PUT -H 'Content-Type: application/json' \
+curl -s -X PUT -H 'Content-Type: application/json' \
   --key $key \
   --cert $cert \
   --cacert $cacert \
@@ -109,13 +109,13 @@ curl -X PUT -H 'Content-Type: application/json' \
       ],
     "classes": { "'$autosign_example_class'": {}, "'$vro_user_class'": {} }
   }' \
-  https://$master_hostname:4433/classifier-api/v1/groups/$autosign_and_user_group_id
+  https://$master_hostname:4433/classifier-api/v1/groups/$autosign_and_user_group_id | python -m json.tool
 echo
 #
 # Create a "Roles" classification group so that the integration role groups are organized more cleanly
 #
 echo "Creating the Roles group"
-curl -X PUT -H 'Content-Type: application/json' \
+curl -s -X PUT -H 'Content-Type: application/json' \
   --key $key \
   --cert $cert \
   --cacert $cacert \
@@ -125,7 +125,7 @@ curl -X PUT -H 'Content-Type: application/json' \
         "parent": "'$all_nodes_id'",
         "classes": {}
   }' \
-  https://$master_hostname:4433/classifier-api/v1/groups/$roles_group_id
+  https://$master_hostname:4433/classifier-api/v1/groups/$roles_group_id | python -m json.tool
 echo
 #
 # Create an environment group for an alternative puppet environment, e.g. dev puppet environment
@@ -153,7 +153,7 @@ for file in /etc/puppetlabs/code/environments/$alternate_environment/site/role/m
      ],
     "classes": { "'$role_class'": {} }
   }' \
-  https://$master_hostname:4433/classifier-api/v1/groups | python -m json.tool
+  https://$master_hostname:4433/classifier-api/v1/groups
 done
 echo
 #
@@ -203,5 +203,5 @@ curl -s -X PUT -H "Content-type: application/json" \
   "environment": "agent-specified",
   "classes": {}
 }' \
-https://$master_hostname:4433/classifier-api/v1/groups/$agent_specified_env_group_id | python -mjson.tool
+https://$master_hostname:4433/classifier-api/v1/groups/$agent_specified_env_group_id | python -m json.tool
 echo
