@@ -28,7 +28,9 @@ find_guid()
 {
   echo $(curl --silent https://$master_hostname:4433/classifier-api/v1/groups --cert $cert --key $key --cacert $cacert | python -m json.tool |grep -C 2 "$1" | grep "id" | cut -d: -f2 | sed 's/[\", ]//g')
 }
-echo
+echo Puppet Master Setup Script
+echo --------------------------
+echo This script expects to be run from puppet-vro-starter_content directory. If run from a different directory, the script may fail.
 production_env_group_id=`find_guid "Production environment"`
 echo "I think the \"Production environment\" group uuid is $production_env_group_id"
 agent_specified_env_group_id=`find_guid "Agent-specified environment"`
@@ -36,12 +38,14 @@ echo "I think the \"Agent-specified environment\" group uuid is $agent_specified
 #
 # Download starter content and create an alternate puppet environment in addition to production
 #
-echo 'Download vRO starter content repo'
+echo 'Copying vRO starter content repo into /etc/puppetlabs/code/environments'
 mkdir -p /etc/puppetlabs/code/environments/$alternate_environment
 rm -rf /etc/puppetlabs/code/environments/$alternate_environment/*
-cp -R ../* /etc/puppetlabs/code/environments/$alternate_environment
-#curl -sSL https://github.com/puppetlabs/puppet-vro-starter_content/archive/production.tar.gz | \
-#tar --strip-components 1 -zx -C /etc/puppetlabs/code/environments/$alternate_environment
+cp -R * /etc/puppetlabs/code/environments/$alternate_environment
+if [ ! -f /etc/puppetlabs/code/environments/$alternate_environment/Puppetfile ]; then
+  echo "Copy operation failed. Aborting script. Be sure to run 'sh scripts/vra_nc_setup.sh' inside the 'puppet-vro-starter_content' directory"
+  exit 1
+fi
 # Put a copy in production
 rm -rf /etc/puppetlabs/code/environments/production/
 cp -R /etc/puppetlabs/code/environments/$alternate_environment /etc/puppetlabs/code/environments/production
