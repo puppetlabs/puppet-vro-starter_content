@@ -65,9 +65,13 @@ mkdir -p /etc/puppetlabs/code/environments/$alternate_environment
 rm -rf /etc/puppetlabs/code/environments/$alternate_environment/*
 cp -R * /etc/puppetlabs/code/environments/$alternate_environment
 if [ ! -f /etc/puppetlabs/code/environments/$alternate_environment/modules/vro_plugin_user/manifests/init.pp ]; then
-  echo "ERROR: Copy operation failed. Aborting script. Be sure to run 'sh scripts/vra_nc_setup.sh' inside the 'puppet-vro-starter_content' directory"
+  echo "ERROR: Copy operation failed. Aborting script. Be sure to run 'bash scripts/vra_nc_setup.sh' inside the 'puppet-vro-starter_content' directory"
   exit 1
 fi
+# Put a copy in production
+echo 'Replacing production with $alternate_environment contents'
+rm -rf /etc/puppetlabs/code/environments/production/
+cp -R /etc/puppetlabs/code/environments/$alternate_environment /etc/puppetlabs/code/environments/production
 #
 # Tell the NC to refresh its cache so that the classes we just installed are available
 #
