@@ -6,7 +6,7 @@
 #
 # User configuration
 #
-alternate_environment=dev
+alternate_environment=${1:-dev}
 autosign_example_class=autosign_example
 vro_user_class=vro_plugin_user
 #
@@ -48,7 +48,7 @@ if [ $? -eq 0 ]; then
 fi
 
 if [ -d /etc/puppetlabs/code/environments/$alternate_environment ]; then
-  echo "ERROR: It appears that the \"$alternate_environment\" environment already exists. Please remove this /etc/puppetlabs/code/environments/$alternate_environment or change the value of alternate_environment variable in this script (line 9)"
+  echo "ERROR: It appears that the \"$alternate_environment\" environment already exists. Please remove /etc/puppetlabs/code/environments/$alternate_environment or run 'sh scripts/vra_nc_setup.sh <environment_name>'"
   exit 1
 fi
 
