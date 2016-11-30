@@ -2,7 +2,8 @@
 
 Installation with git
 ```
-git clone git@github.com:puppetlabs/puppet-vro-starter_content.git
+git clone https://github.com/puppetlabs/puppet-vro-starter_content.git
+cd puppet-vro-starter_content
 sh scripts/vra_nc_setup.sh
 ```
 
