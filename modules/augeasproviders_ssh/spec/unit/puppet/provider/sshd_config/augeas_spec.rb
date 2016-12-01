@@ -136,7 +136,7 @@ describe provider_class do
         }
       }
 
-      expect(inst.size).to eq(16)
+      expect(inst.size).to eq(17)
       expect(inst[0]).to eq({:name=>"ListenAddress", :ensure=>:present, :value=>["0.0.0.0", "::"], :condition=>:absent})
       expect(inst[1]).to eq({:name=>"SyslogFacility", :ensure=>:present, :value=>["AUTHPRIV"], :condition=>:absent})
       expect(inst[2]).to eq({:name=>"AllowGroups", :ensure=>:present, :value=>["sshusers", "admins"], :condition=>:absent})
@@ -144,8 +144,8 @@ describe provider_class do
       expect(inst[4]).to eq({:name=>"PasswordAuthentication", :ensure=>:present, :value=>["yes"], :condition=>:absent})
       expect(inst[8]).to eq({:name=>"UsePAM", :ensure=>:present, :value=>["yes"], :condition=>:absent})
       expect(inst[9]).to eq({:name=>"AcceptEnv", :ensure=>:present, :value=>["LANG", "LC_CTYPE", "LC_NUMERIC", "LC_TIME", "LC_COLLATE", "LC_MONETARY", "LC_MESSAGES", "LC_PAPER", "LC_NAME", "LC_ADDRESS", "LC_TELEPHONE", "LC_MEASUREMENT", "LC_IDENTIFICATION", "LC_ALL", "LANGUAGE", "XMODIFIERS"], :condition=>:absent})
-      expect(inst[11]).to eq({:name=>"X11Forwarding", :ensure=>:present, :value=>["no"], :condition=> "User anoncvs"})
-      expect(inst[14]).to eq({:name=>"AllowAgentForwarding", :ensure=>:present, :value=>["no"], :condition=> "Host *.example.net User *"})
+      expect(inst[12]).to eq({:name=>"X11Forwarding", :ensure=>:present, :value=>["no"], :condition=> "User anoncvs"})
+      expect(inst[15]).to eq({:name=>"AllowAgentForwarding", :ensure=>:present, :value=>["no"], :condition=> "Host *.example.net User *"})
     end
 
     describe "when creating settings" do
