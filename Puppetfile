@@ -41,4 +41,4 @@ mod 'vro_plugin_user',
   :git => 'https://github.com/puppetlabs/puppet-vro-vro_plugin_user'
 
 mod 'vro_plugin_sshd',
-  :git => 'https://github.com/puppetlabs/puppet-vro-vro_plugin_sshd'
+  :git => 'https://github.com/puppetlabs/puppet-vro-vro_plugin_sshd'
