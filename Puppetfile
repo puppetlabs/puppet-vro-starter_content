@@ -29,6 +29,8 @@ mod 'puppet-windowsfeature', '2.0.0'
 mod 'puppet/hiera', '2.1.2'
 mod 'reidmv-unzip', '0.1.2'
 mod 'stahnma-epel', '1.2.2'
+mod 'herculesteam-augeasproviders_core', '2.1.3'
+mod 'herculesteam-augeasproviders_ssh', '2.5.0'
 
 # Module Content from git
 
@@ -37,3 +39,6 @@ mod 'autosign_example',
 
 mod 'vro_plugin_user',
   :git => 'https://github.com/puppetlabs/puppet-vro-vro_plugin_user'
+
+mod 'vro_plugin_sshd',
+  :git => 'https://github.com/puppetlabs/puppet-vro-vro_plugin_sshd'
