@@ -9,6 +9,7 @@
 alternate_environment=${1:-dev}
 autosign_example_class=autosign_example
 vro_user_class=vro_plugin_user
+vro_sshd_class=vro_plugin_sshd
 #
 # Configuration we can detect
 #
@@ -98,7 +99,7 @@ curl -s -X PUT -H 'Content-Type: application/json' \
   --cacert $cacert \
   -d '
   {
-    "name": "Autosign and vRO Plugin User",
+    "name": "Autosign and vRO Plugin User and sshd config",
     "parent": "'$all_nodes_id'",
     "rule":
       [ "and",
@@ -107,7 +108,7 @@ curl -s -X PUT -H 'Content-Type: application/json' \
           "'$master_hostname'"
         ]
       ],
-    "classes": { "'$autosign_example_class'": {}, "'$vro_user_class'": {} }
+    "classes": { "'$autosign_example_class'": {}, "'$vro_user_class'": {}, "'$vro_sshd_class'": {} }
   }' \
   https://$master_hostname:4433/classifier-api/v1/groups/$autosign_and_user_group_id | python -m json.tool
 echo
