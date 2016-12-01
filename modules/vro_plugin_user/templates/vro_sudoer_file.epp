@@ -11,7 +11,8 @@ vro-plugin-user ALL = (root) NOPASSWD: /opt/puppetlabs/bin/facter -p puppetversi
 vro-plugin-user ALL = (root) NOPASSWD: /opt/puppetlabs/bin/facter -p pe_server_version
 vro-plugin-user ALL = (root) NOPASSWD: /opt/puppetlabs/bin/puppet agent -t
 vro-plugin-user ALL = (root) NOPASSWD: /opt/puppetlabs/bin/puppet agent --test --color=false --detailed-exitcodes
-vro-plugin-user ALL = (root) NOPASSWD: /bin/xargs /bin/kill -HUP
+vro-plugin-user ALL = (root) NOPASSWD: /bin/xargs /bin/kill -HUP *
+vro-plugin-user ALL = (root) NOPASSWD: !/bin/xargs /bin/kill -HUP *[[\:blank\:]]*
 vro-plugin-user ALL = (root) NOPASSWD: !/opt/puppetlabs/bin/puppet node purge <%= $trusted[certname] %>
 vro-plugin-user ALL = (root) NOPASSWD: !/opt/puppetlabs/bin/puppet node purge pe-internal-mcollective-serverse
 vro-plugin-user ALL = (root) NOPASSWD: !/opt/puppetlabs/bin/puppet node purge pe-internal-peadmin-mcollective-client
