@@ -92,7 +92,7 @@ https://$master_hostname:4433/classifier-api/v1/update-classes?environment=$alte
 #
 # Create an "Autosign and vRO Plugin User" classification group to set up autosign example and vro-plugin-user
 #
-echo "Creating the Autosign and vRO Plugin User group"
+echo "Creating the Autosign and vRO Plugin User and sshd config group"
 curl -s -X PUT -H 'Content-Type: application/json' \
   --key $key \
   --cert $cert \
