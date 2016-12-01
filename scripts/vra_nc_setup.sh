@@ -13,10 +13,10 @@ vro_sshd_class=vro_plugin_sshd
 #
 # Configuration we can detect
 #
-master_hostname=$(puppet config print certname)
-key=$(puppet config print hostprivkey)
-cert=$(puppet config print hostcert)
-cacert=$(puppet config print localcacert)
+master_hostname=$(/opt/puppetlabs/bin/puppet config print certname)
+key=$(/opt/puppetlabs/bin/puppet config print hostprivkey)
+cert=$(/opt/puppetlabs/bin/puppet config print hostcert)
+cacert=$(/opt/puppetlabs/bin/puppet config print localcacert)
 
 all_nodes_id='00000000-0000-4000-8000-000000000000'
 roles_group_id='235a97b3-949b-48e0-8e8a-000000000666'
