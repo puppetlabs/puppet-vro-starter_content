@@ -1,5 +1,9 @@
 # vRO Starter Content Pack
 
+## Introduction
+
+This repository provides starter content for the Puppet plugin for VMware vRealize Orchestrator (vRO). Please see the [complete documentation](https://docs.puppet.com/pe/latest/vro_intro.html) for more information on how to install the Puppet plugin and use the content provided in this repository.
+
 Installation with git
 ```
 git clone https://github.com/puppetlabs/puppet-vro-starter_content.git
