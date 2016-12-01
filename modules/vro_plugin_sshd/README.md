@@ -29,6 +29,7 @@ These are the options that are changed/managed
   
   mod 'herculesteam-augeasproviders_core', '2.1.3'
   
+
 * Augeas Providers for SSH
   
   mod 'herculesteam-augeasproviders_ssh', '2.5.0'

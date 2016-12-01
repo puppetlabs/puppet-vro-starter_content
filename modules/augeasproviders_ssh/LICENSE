@@ -1,6 +1,6 @@
 augeasproviders: alternative Augeas-based providers for Puppet
 
-Copyright (c) 2012-2016 Dominic Cleal and Raphaël Pinson
+Copyright (c) 2012-2014 Dominic Cleal and Raphaël Pinson
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
