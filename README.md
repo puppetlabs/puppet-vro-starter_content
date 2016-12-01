@@ -18,5 +18,4 @@ cd puppet-vro-starter_content-production
 sudo bash scripts/vra_nc_setup.sh
 ```
 
-Special thanks to Abir Majumdar, and the Puppet TSE team for inspiration and bulk of contributions.
-Jeremy Adams was a more minor contributor but a major commit squasher.
+Special thanks to Abir Majumdar, Tommy Speigner, Jeremy Adams and the whole Puppet TSE team for inspiration and bulk of contributions.
