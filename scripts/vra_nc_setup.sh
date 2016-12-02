@@ -11,17 +11,44 @@ autosign_example_class=autosign_example
 vro_user_class=vro_plugin_user
 vro_sshd_class=vro_plugin_sshd
 
-# Check to see if user running script has root privs
-if (( $EUID != 0 )); then
-    echo "ERROR: This script should only run by the root user or via sudo"
-    exit
-fi
+#
+# Do some error checking first before running the script
+#
+error_checking()
+{
+  # Check to see if user running script has root privs
+  if (( $EUID != 0 )); then
+      echo "ERROR: This script should only be run by the root user or via sudo."
+      exit 1
+  fi
 
-# Check to see if script is being run on a puppet master
-if [ ! -f /opt/puppetlabs/server/bin/puppetserver]; then
-  echo "ERROR: It appears that you are not running this script on a puppet master. This script can not continue."
-  exit 1
-fi
+  # Check to see if script is running from puppet-vro-starter_content directory
+  if [[ $PWD != *"puppet-vro-starter_content"* ]]
+  then
+    echo "ERROR:  You must run 'bash scripts/vra_nc_setup.sh' inside the 'puppet-vro-starter_content' directory.";
+    exit 1
+  fi
+
+  # Check to see if script is being run on a puppet master
+  if [ ! -f /opt/puppetlabs/server/bin/puppetserver ]; then
+    echo "ERROR: This script should only be run by the root user or via sudo."
+    exit 1
+  fi
+
+  #
+  # Check if code manager is being used
+  #
+  curl -s -X GET \ -H "Content-Type: application/json" \
+  --cert   $cert \
+  --key    $key \
+  --cacert $cacert \
+  "https://$master_hostname:4433/classifier-api/v1/groups" | python -m json.tool | grep -q code_manager_auto_configure
+  if [ $? -eq 0 ]; then
+    echo "ERROR: It appears that code manager is being used. This script can not continue."
+    exit 1
+  fi
+}
+error_checking
 
 #
 # Configuration we can detect
@@ -48,19 +75,6 @@ echo This script expects to be run from puppet-vro-starter_content directory. If
 echo This script also assumes it is being run on a freshly installed master that is not using code manager.
 echo --------------------------
 
-#
-# Check if code manager is being used
-#
-curl -s -X GET \ -H "Content-Type: application/json" \
---cert   $cert \
---key    $key \
---cacert $cacert \
-"https://$master_hostname:4433/classifier-api/v1/groups" | python -m json.tool | grep -q code_manager_auto_configure
-if [ $? -eq 0 ]; then
-  echo "ERROR: It appears that code manager is being used. This script can not continue."
-  exit 1
-fi
-
 date_string=`date +%Y-%m-%d:%H:%M:%S`
 echo "Backing up existing contents of /etc/puppetlabs/code to $date_string"
 cp -R /etc/puppetlabs/code /etc/puppetlabs/code_backup_$date_string
@@ -77,10 +91,7 @@ echo 'Copying vRO starter content repo into /etc/puppetlabs/code/environments'
 mkdir -p /etc/puppetlabs/code/environments/$alternate_environment
 rm -rf /etc/puppetlabs/code/environments/$alternate_environment/*
 cp -R * /etc/puppetlabs/code/environments/$alternate_environment
-if [ ! -f /etc/puppetlabs/code/environments/$alternate_environment/modules/vro_plugin_user/manifests/init.pp ]; then
-  echo "ERROR: Copy operation failed. Aborting script. Be sure to run 'bash scripts/vra_nc_setup.sh' inside the 'puppet-vro-starter_content' directory"
-  exit 1
-fi
+
 # Put a copy in production
 echo "Duplicating $alternate_environment contents into production"
 rm -rf /etc/puppetlabs/code/environments/production/
