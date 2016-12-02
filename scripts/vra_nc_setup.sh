@@ -6,10 +6,23 @@
 #
 # User configuration
 #
-alternate_environment=${1:-dev}
+alternate_environment=dev
 autosign_example_class=autosign_example
 vro_user_class=vro_plugin_user
 vro_sshd_class=vro_plugin_sshd
+
+# Check to see if user running script has root privs
+if (( $EUID != 0 )); then
+    echo "ERROR: This script should only run by the root user or via sudo"
+    exit
+fi
+
+# Check to see if script is being run on a puppet master
+if [ ! -f /opt/puppetlabs/server/bin/puppetserver]; then
+  echo "ERROR: It appears that you are not running this script on a puppet master. This script can not continue."
+  exit 1
+fi
+
 #
 # Configuration we can detect
 #
@@ -48,10 +61,9 @@ if [ $? -eq 0 ]; then
   exit 1
 fi
 
-if [ -d /etc/puppetlabs/code/environments/$alternate_environment ]; then
-  echo "ERROR: It appears that the \"$alternate_environment\" environment already exists. Please remove /etc/puppetlabs/code/environments/$alternate_environment or run 'sh scripts/vra_nc_setup.sh <environment_name>'"
-  exit 1
-fi
+date_string=`date +%Y-%m-%d:%H:%M:%S`
+echo "Backing up existing contents of /etc/puppetlabs/code to $date_string"
+cp -R /etc/puppetlabs/code /etc/puppetlabs/code_backup_$date_string
 
 production_env_group_id=`find_guid "Production environment"`
 echo "\"Production environment\" group uuid is $production_env_group_id"
@@ -70,7 +82,7 @@ if [ ! -f /etc/puppetlabs/code/environments/$alternate_environment/modules/vro_p
   exit 1
 fi
 # Put a copy in production
-echo "Replacing production with $alternate_environment contents"
+echo "Duplicating $alternate_environment contents into production"
 rm -rf /etc/puppetlabs/code/environments/production/
 cp -R /etc/puppetlabs/code/environments/$alternate_environment /etc/puppetlabs/code/environments/production
 #
