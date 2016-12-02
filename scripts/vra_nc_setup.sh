@@ -6,6 +6,12 @@
 #
 # User configuration
 #
+echo Puppet Master Setup Script
+echo --------------------------
+echo This script expects to be run from puppet-vro-starter_content directory. If run from a different directory, the script will fail.
+echo This script also assumes it is being run on a freshly installed master that is not using code manager.
+echo --------------------------
+
 alternate_environment=dev
 autosign_example_class=autosign_example
 vro_user_class=vro_plugin_user
@@ -71,23 +77,19 @@ find_guid()
 {
   echo $(curl -s https://$master_hostname:4433/classifier-api/v1/groups --cert $cert --key $key --cacert $cacert | python -m json.tool |grep -C 2 "$1" | grep "id" | cut -d: -f2 | sed 's/[\", ]//g')
 }
-echo Puppet Master Setup Script
-echo --------------------------
-echo This script expects to be run from puppet-vro-starter_content directory. If run from a different directory, the script will fail.
-echo This script also assumes it is being run on a freshly installed master that is not using code manager.
-echo --------------------------
-
-date_string=`date +%Y-%m-%d:%H:%M:%S`
-echo "Backing up existing contents of /etc/puppetlabs/code to $date_string"
-cp -R /etc/puppetlabs/code /etc/puppetlabs/code_backup_$date_string
 
 production_env_group_id=`find_guid "Production environment"`
 echo "\"Production environment\" group uuid is $production_env_group_id"
 agent_specified_env_group_id=`find_guid "Agent-specified environment"`
 echo "\"Agent-specified environment\" group uuid is $agent_specified_env_group_id"
 pemaster_group_id=`find_guid "PE Master"`
+
+date_string=`date +%Y-%m-%d:%H:%M:%S`
+echo "Backing up existing contents of /etc/puppetlabs/code to $date_string"
+cp -R /etc/puppetlabs/code /etc/puppetlabs/code_backup_$date_string
+
 #
-# Download starter content and create an alternate puppet environment in addition to production
+# Copying starter content and create an alternate puppet environment in addition to production
 #
 echo 'Copying vRO starter content repo into /etc/puppetlabs/code/environments'
 mkdir -p /etc/puppetlabs/code/environments/$alternate_environment
