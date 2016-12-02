@@ -11,6 +11,19 @@ autosign_example_class=autosign_example
 vro_user_class=vro_plugin_user
 vro_sshd_class=vro_plugin_sshd
 
+all_nodes_id='00000000-0000-4000-8000-000000000000'
+roles_group_id='235a97b3-949b-48e0-8e8a-000000000666'
+dev_env_group_id='235a97b3-949b-48e0-8e8a-000000000888'
+autosign_and_user_group_id='235a97b3-949b-48e0-8e8a-000000000999'
+
+#
+# Configuration we can detect
+#
+master_hostname=$(/opt/puppetlabs/bin/puppet config print certname)
+key=$(/opt/puppetlabs/bin/puppet config print hostprivkey)
+cert=$(/opt/puppetlabs/bin/puppet config print hostcert)
+cacert=$(/opt/puppetlabs/bin/puppet config print localcacert)
+
 #
 # Do some error checking first before running the script
 #
@@ -42,26 +55,15 @@ error_checking()
   --cert   $cert \
   --key    $key \
   --cacert $cacert \
-  "https://$master_hostname:4433/classifier-api/v1/groups" | python -m json.tool | grep -q code_manager_auto_configure
+  "https://$master_hostname:4433/classifier-api/v1/groups" | grep -q code_manager_auto_configure
   if [ $? -eq 0 ]; then
     echo "ERROR: It appears that code manager is being used. This script can not continue."
     exit 1
   fi
 }
+
 error_checking
 
-#
-# Configuration we can detect
-#
-master_hostname=$(/opt/puppetlabs/bin/puppet config print certname)
-key=$(/opt/puppetlabs/bin/puppet config print hostprivkey)
-cert=$(/opt/puppetlabs/bin/puppet config print hostcert)
-cacert=$(/opt/puppetlabs/bin/puppet config print localcacert)
-
-all_nodes_id='00000000-0000-4000-8000-000000000000'
-roles_group_id='235a97b3-949b-48e0-8e8a-000000000666'
-dev_env_group_id='235a97b3-949b-48e0-8e8a-000000000888'
-autosign_and_user_group_id='235a97b3-949b-48e0-8e8a-000000000999'
 #
 # Determine the uuids for groups that are created during PE install but with randomly generated uuids
 #
