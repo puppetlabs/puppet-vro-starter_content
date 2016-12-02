@@ -6,10 +6,22 @@
 #
 # User configuration
 #
-alternate_environment=${1:-dev}
+echo Puppet Master Setup Script
+echo --------------------------
+echo This script expects to be run from puppet-vro-starter_content directory. If run from a different directory, the script will fail.
+echo This script also assumes it is being run on a freshly installed master that is not using code manager.
+echo --------------------------
+
+alternate_environment=dev
 autosign_example_class=autosign_example
 vro_user_class=vro_plugin_user
 vro_sshd_class=vro_plugin_sshd
+
+all_nodes_id='00000000-0000-4000-8000-000000000000'
+roles_group_id='235a97b3-949b-48e0-8e8a-000000000666'
+dev_env_group_id='235a97b3-949b-48e0-8e8a-000000000888'
+autosign_and_user_group_id='235a97b3-949b-48e0-8e8a-000000000999'
+
 #
 # Configuration we can detect
 #
@@ -18,10 +30,46 @@ key=$(/opt/puppetlabs/bin/puppet config print hostprivkey)
 cert=$(/opt/puppetlabs/bin/puppet config print hostcert)
 cacert=$(/opt/puppetlabs/bin/puppet config print localcacert)
 
-all_nodes_id='00000000-0000-4000-8000-000000000000'
-roles_group_id='235a97b3-949b-48e0-8e8a-000000000666'
-dev_env_group_id='235a97b3-949b-48e0-8e8a-000000000888'
-autosign_and_user_group_id='235a97b3-949b-48e0-8e8a-000000000999'
+#
+# Do some error checking first before running the script
+#
+error_checking()
+{
+  # Check to see if user running script has root privs
+  if (( $EUID != 0 )); then
+      echo "ERROR: This script should only be run by the root user or via sudo."
+      exit 1
+  fi
+
+  # Check to see if script is running from puppet-vro-starter_content directory
+  if [[ $PWD != *"puppet-vro-starter_content"* ]]
+  then
+    echo "ERROR:  You must run 'bash scripts/vra_nc_setup.sh' inside the 'puppet-vro-starter_content' directory.";
+    exit 1
+  fi
+
+  # Check to see if script is being run on a puppet master
+  if [ ! -f /opt/puppetlabs/server/bin/puppetserver ]; then
+    echo "ERROR: This script should only be run by the root user or via sudo."
+    exit 1
+  fi
+
+  #
+  # Check if code manager is being used
+  #
+  curl -s -X GET \ -H "Content-Type: application/json" \
+  --cert   $cert \
+  --key    $key \
+  --cacert $cacert \
+  "https://$master_hostname:4433/classifier-api/v1/groups" | grep -q code_manager_auto_configure
+  if [ $? -eq 0 ]; then
+    echo "ERROR: It appears that code manager is being used. This script can not continue."
+    exit 1
+  fi
+}
+
+error_checking
+
 #
 # Determine the uuids for groups that are created during PE install but with randomly generated uuids
 #
@@ -29,48 +77,27 @@ find_guid()
 {
   echo $(curl -s https://$master_hostname:4433/classifier-api/v1/groups --cert $cert --key $key --cacert $cacert | python -m json.tool |grep -C 2 "$1" | grep "id" | cut -d: -f2 | sed 's/[\", ]//g')
 }
-echo Puppet Master Setup Script
-echo --------------------------
-echo This script expects to be run from puppet-vro-starter_content directory. If run from a different directory, the script will fail.
-echo This script also assumes it is being run on a freshly installed master that is not using code manager.
-echo --------------------------
-
-#
-# Check if code manager is being used
-#
-curl -s -X GET \ -H "Content-Type: application/json" \
---cert   $cert \
---key    $key \
---cacert $cacert \
-"https://$master_hostname:4433/classifier-api/v1/groups" | python -m json.tool | grep -q code_manager_auto_configure
-if [ $? -eq 0 ]; then
-  echo "ERROR: It appears that code manager is being used. This script can not continue."
-  exit 1
-fi
-
-if [ -d /etc/puppetlabs/code/environments/$alternate_environment ]; then
-  echo "ERROR: It appears that the \"$alternate_environment\" environment already exists. Please remove /etc/puppetlabs/code/environments/$alternate_environment or run 'sh scripts/vra_nc_setup.sh <environment_name>'"
-  exit 1
-fi
 
 production_env_group_id=`find_guid "Production environment"`
 echo "\"Production environment\" group uuid is $production_env_group_id"
 agent_specified_env_group_id=`find_guid "Agent-specified environment"`
 echo "\"Agent-specified environment\" group uuid is $agent_specified_env_group_id"
 pemaster_group_id=`find_guid "PE Master"`
+
+date_string=`date +%Y-%m-%d:%H:%M:%S`
+echo "Backing up existing contents of /etc/puppetlabs/code to $date_string"
+cp -R /etc/puppetlabs/code /etc/puppetlabs/code_backup_$date_string
+
 #
-# Download starter content and create an alternate puppet environment in addition to production
+# Copying starter content and create an alternate puppet environment in addition to production
 #
 echo 'Copying vRO starter content repo into /etc/puppetlabs/code/environments'
 mkdir -p /etc/puppetlabs/code/environments/$alternate_environment
 rm -rf /etc/puppetlabs/code/environments/$alternate_environment/*
 cp -R * /etc/puppetlabs/code/environments/$alternate_environment
-if [ ! -f /etc/puppetlabs/code/environments/$alternate_environment/modules/vro_plugin_user/manifests/init.pp ]; then
-  echo "ERROR: Copy operation failed. Aborting script. Be sure to run 'bash scripts/vra_nc_setup.sh' inside the 'puppet-vro-starter_content' directory"
-  exit 1
-fi
+
 # Put a copy in production
-echo "Replacing production with $alternate_environment contents"
+echo "Duplicating $alternate_environment contents into production"
 rm -rf /etc/puppetlabs/code/environments/production/
 cp -R /etc/puppetlabs/code/environments/$alternate_environment /etc/puppetlabs/code/environments/production
 #
