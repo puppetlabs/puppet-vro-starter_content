@@ -1,15 +1,15 @@
-# vRealize Automation Plugin Starter Content Pack
+# vRealize Automation Plug-in Starter Content Pack
 
-## Introduction 
+## Introduction
 
-This repository provides starter Puppet content for the [Puppet plugin for vRealize Automation](https://solutionexchange.vmware.com/admin/products/133777) (VRO and VRA). It shows you how Puppet code is organized to make self-provisioning easy and can create 5 different machine types out of the box:
+This repository provides starter Puppet content for the [Puppet plug-in for vRealize Automation](https://solutionexchange.vmware.com/admin/products/133777) (VRO and VRA). It shows you how Puppet code is organized to make self-provisioning easy and can create 5 different machine types out of the box:
 - Linux base server
 - Linux MySQL server
 - Linux web server
 - Windows base server
 - Windows web server
 
-Please see the [complete documentation](https://docs.puppet.com/pe/latest/vro_intro.html) for more information on how to install the Puppet plugin and use the content provided in this repository.
+Please see the [complete documentation](https://docs.puppet.com/pe/latest/vro_intro.html) for more information on how to install the Puppet plug-in and use the content provided in this repository.
 
 Installation with git
 ```
