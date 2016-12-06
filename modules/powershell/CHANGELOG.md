@@ -1,36 +1,3 @@
-##2016-07-12 - Supported Release 2.0.2
-###Summary
-
-Small release with bugs fixes and another speed improvement.
-
-###Features
-- Noticable speed increase by reducing the time start a PowerShell command ([MODULES-3406](https://tickets.puppetlabs.com/browse/MODULES-3406))
-
-###Bug Fixes
-- Fixed minor bugs in tests ([MODULES-3347](https://tickets.puppetlabs.com/browse/MODULES-3347))
-- Added tests for try/catch ([MODULES-2634](https://tickets.puppetlabs.com/browse/MODULES-2634))
-- Fixed bug with older ruby (1.8)
-
-##2016-05-24 - Supported Release 2.0.1
-###Bug Fixes
-
-- Updated the powershell manager in this module in order to not conflict with the Powershell Manager in the Puppet DSC module
-
-##2016-05-17 - Supported Release 2.0.0
-###Summary
-
-Major release with performance improvements
-
-Removed support for Windows Server 2003
-
-###Features
-- Major performance improvement by sharing a single powershell session instead of creating a new powershell session per command
-- Security improvement as scripts are not stored on the filesystem temporarily
-
-###Bug Fixes
-- Updated test suites with later versions
-- Documentation cleanup
-
 ##2015-12-08 - Supported Release 1.0.6
 ###Summary
 
