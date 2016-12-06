@@ -1,0 +1,16 @@
+{
+  "README.md": "90e8356710a16201f88ec5c1e5bf3af3",
+  "Rakefile": "20b80e526e351a74df2001f504e756d2",
+  "lib/puppet/provider/myfirewall/firewalld.rb": "bae7f2bd247f2454d30f37cf1981869f",
+  "lib/puppet/type/myfirewall.rb": "2c53646c87b06c9bcfe2019694d9db62",
+  "manifests/config.pp": "a47237edaf8b38f0a0b7880c45b46efd",
+  "manifests/init.pp": "75e829e9b8a7db9645641fe7e0503195",
+  "manifests/install.pp": "14173488630e98cafc64626ff604011f",
+  "manifests/params.pp": "d9c7e7faa452b55885e500ad007cce59",
+  "manifests/reload_firewall.pp": "c6289c34b718f923556bec6db32593dc",
+  "manifests/service.pp": "98f973cbb9134ecbcec2d1aaa7e021cc",
+  "metadata.json": "2148c95dfd71c3104b5f2630d333e80b",
+  "spec/classes/init_spec.rb": "51c0565ba958b44d9e1906079d22b7ca",
+  "spec/spec_helper.rb": "a55d1e6483344f8ec6963fcb2c220372",
+  "tests/init.pp": "f795c7c138ed9bbf1bdb590c8a09cc25"
+}
