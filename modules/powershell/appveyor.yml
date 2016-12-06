@@ -1,6 +1,6 @@
 version: 1.1.x.{build}
 skip_commits:
-  message: /^\(?doc\)?.*/
+  message: /(^\(?doc\)?.*|.*[A|a]cceptance [T|t]est.*)/
 clone_depth: 10
 init:
 - SET
@@ -24,13 +24,14 @@ matrix:
   fast_finish: true
 install:
 - SET PATH=C:\Ruby%RUBY_VER%\bin;%PATH%
+- gem install bundler --quiet --no-ri --no-rdoc
 - bundle install --jobs 4 --retry 2 --without system_tests
 - type Gemfile.lock
 build: off
 test_script:
 - bundle exec puppet -V
 - ruby -v
-- bundle exec rspec spec/unit spec/integration -fd -b
+- bundle exec rspec spec/unit -fd -b
 notifications:
 - provider: Email
   to:
