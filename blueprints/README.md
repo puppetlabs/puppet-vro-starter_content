@@ -47,7 +47,10 @@ CloudClient>vra content list
 
 ### Event Broker Subscriptions - you just need two
 
-After you import blueprints, you'll want to configure Event Broker to call the Install or Purge actions for the MachineProvisioned and UnprovisionMachine events under Administration > Event Broker > Subscriptions.
+* Install PE Agent
+* Purge PE Agent
+
+After you import blueprints, you'll want to configure Event Broker to call the Install or Purge actions for the MachineProvisioned and UnprovisionMachine events under Administration > Event Broker > Subscriptions. When you request a blueprint from the catalog, the VM built will go through lifecycle stages like "Cloning" and "Customize Machine". When the VM reaches the right stage during initial provisioning or when being destroyed, you'll want the right vRO workflow to run to make sure Puppet configures your machine or the node is cleaned up in Puppet (releasing the license and removing the node from the management console). Make sure you "Publish" your subscriptions once you're done or they won't be active.
 
 Create a new "Install PE Agent" subscription under event topic "Machine Provisioning", and then on the "Conditions" tab, "Run Based on Conditions" for "All of the following" with two clauses:
 * [Data > Lifecycle state > Lifecycle stage name] [Equals] [(Constant) VMPSMasterWorkflow32.MachineProvisioned]
