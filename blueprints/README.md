@@ -1,4 +1,6 @@
-# Sample Blueprints
+# How to import the sample vRA blueprints and set up Event Broker
+
+## Sample Blueprints
 
 * PE Linux Webserver Example
 * PE Windows Webserver Example
@@ -43,9 +45,8 @@ This will show you the properties, property groups, and blueprints that you have
 CloudClient>vra content list
 ```
 
-### Next steps
+### Event Broker Subscriptions - you just need two
 
-##### Event Broker
 After you import blueprints, you'll want to configure Event Broker to call the Install or Purge actions for the MachineProvisioned and UnprovisionMachine events under Administration > Event Broker > Subscriptions.
 
 Create a new "Install PE Agent" subscription under event topic "Machine Provisioning", and then on the "Conditions" tab, "Run Based on Conditions" for "All of the following" with two clauses:
@@ -62,12 +63,13 @@ Create a new "Purge PE Agent" subscription under event topic "Machine Provisioni
 Then on the "Workflow" tab, connect it to the vRO workflow:
 *  Library > Puppet > Event Broker Samples > EventBroker Purge PE Agent Node
 
+### Noteworthy Points
 
 ##### Catalog Management
 These blueprints should be "published" once you import them, but you need to ensure that they are "Active" and available to the desired "Service" in your tenant.
 * Administration > Catalog Management > Catalog Items > PE Linux Webserver Example
 * Administration > Catalog Management > Catalog Items > PE Windows Webserver Example
 
-##### note:
+##### Blueprint Generalization
 These blueprints are self-contained, and have all poperties exposed, but normally I'd hide some properties from end users and use vRA Property Groups to DRY things up a bit. For example a Property Group with the State Changes for Event Broker, one for Linux SSH creds, one for Windows WinRM creds, one for Autosign secret. Properties like the Puppet.AutoSign.SharedSecret have values that work out of the box with the content at https://github.com/puppetlabs/puppet-vro-starter_content. To put the final polish on, you will also want to create Property Definitions so you can have pretty display names, dropdowns, input validation, etc. All of this stuff is under:
 * Administration > Property Dictionary.
