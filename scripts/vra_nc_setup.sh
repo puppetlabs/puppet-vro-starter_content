@@ -140,6 +140,20 @@ curl -s -X PUT -H 'Content-Type: application/json' \
   https://$master_hostname:4433/classifier-api/v1/groups/$autosign_and_user_group_id | python -m json.tool
 echo
 #
+# Add 64 bit Windows agent installer to pe_repo
+#
+echo "Adding 64 bit Windows agent installer to pe_repo in PE Master group"
+curl -s -X POST -H 'Content-Type: application/json' \
+  --key $key \
+  --cert $cert \
+  --cacert $cacert \
+  -d '
+  {
+    "classes": { "pe_repo::platform::windows_x86_64": {} }
+  }' \
+  https://$master_hostname:4433/classifier-api/v1/groups/$pemaster_group_id | python -m json.tool
+echo
+#
 # Create a "Roles" classification group so that the integration role groups are organized more cleanly
 #
 echo "Creating the Roles group"
