@@ -24,7 +24,7 @@ class profile::sample_website::windows (
     ],
   }
 
-  windows_firewall::exception { 'WINRM':
+  windows_firewall::exception { 'IIS':
     ensure       => present,
     direction    => 'in',
     action       => 'Allow',
