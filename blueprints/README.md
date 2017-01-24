@@ -5,9 +5,9 @@
 * PE Linux Webserver Example
 * PE Windows Webserver Example
 
-### It's easy to import these blueprints into vRA with CloudClient 4.1.
+### It's easy to import these blueprints into vRA with CloudClient.
 
-https://developercenter.vmware.com/tool/cloudclient/4.1.0
+https://developercenter.vmware.com/tool/cloudclient/
 
 ```
 ===================================================
