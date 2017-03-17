@@ -1,4 +1,6 @@
+# Sample website content for Apache on Linux
 #
+# @summary Apache webserver sample content
 class profile::sample_website::linux (
     $doc_root,
     $webserver_port,

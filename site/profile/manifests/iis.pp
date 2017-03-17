@@ -1,4 +1,6 @@
-# Installs iis
+# This profile installs the Microsoft IIS webserver
+#
+# @summary IIS webserver
 class profile::iis {
 
   $iis_features = [

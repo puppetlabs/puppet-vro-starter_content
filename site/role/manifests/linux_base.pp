@@ -1,4 +1,6 @@
-# This role installs a baseline of packages on Linux machines
+# This role creates a basic Linux server
+#
+# @summary Baseline Linux server
 class role::linux_base {
   include profile::linux_baseline
 }

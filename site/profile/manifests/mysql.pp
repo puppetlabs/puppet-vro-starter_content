@@ -1,4 +1,6 @@
+# This profile installs MySQL
 #
+# @summary MySQL database
 class profile::mysql {
 
   class { 'mysql::server':

@@ -1,4 +1,6 @@
+# This profile installs sample web content for the webserver
 #
+# @summary Install sample website content
 class profile::sample_website {
 
   case $::kernel {

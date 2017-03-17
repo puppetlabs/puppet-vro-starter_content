@@ -1,7 +1,8 @@
+# This profile manages any operating system-specific state for VRO-provisioned machines. It's common to change the Administrator user name on Windows, for example.
+#
+# @summary OS-specific configuration for VRO-provisioned machines
 class profile::vro_provisioned {
 
-  # any operating system-specific state for vro-provisioned machines.
-  # it's common to change the Administrator user name on Windows, for example.
   case $kernel {
     'Linux': {
       $agent_confdir = '/etc/puppetlabs/puppet'

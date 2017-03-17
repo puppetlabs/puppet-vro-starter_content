@@ -1,4 +1,6 @@
-# Installs sample database
+# This profile installs sample data for MySQL
+#
+# @summary Sample data for MySQL
 class profile::sample_data (
     $database_content,
     $database_name,
