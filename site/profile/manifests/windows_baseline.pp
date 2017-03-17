@@ -1,4 +1,6 @@
+# This profile provides minimum configuration for Windows servers
 #
+# @summary Windows server baseline 
 class profile::windows_baseline {
 
   include chocolatey

@@ -1,4 +1,6 @@
+# Sample website content for IIS on Windows
 #
+# @summary IIS webserver sample content
 class profile::sample_website::windows (
     $doc_root,
     $webserver_port,
