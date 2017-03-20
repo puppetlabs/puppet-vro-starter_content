@@ -1,3 +1,4 @@
+# @summary This profile does some post agent install cleanup.
 class profile::vro_provisioned {
 
   # any operating system-specific state for vro-provisioned machines.

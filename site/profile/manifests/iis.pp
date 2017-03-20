@@ -1,4 +1,4 @@
-# Installs iis
+# @summary This profile installs IIS and turns off the default website
 class profile::iis {
 
   $iis_features = [

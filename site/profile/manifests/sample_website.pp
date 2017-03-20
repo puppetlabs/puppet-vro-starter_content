@@ -1,4 +1,4 @@
-#
+# @summary This profile installs a sample website
 class profile::sample_website {
 
   case $::kernel {

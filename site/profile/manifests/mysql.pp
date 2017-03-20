@@ -1,4 +1,4 @@
-#
+# @summary This profile installs mysql without default accounts
 class profile::mysql {
 
   class { 'mysql::server':
