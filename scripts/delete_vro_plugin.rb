@@ -3,12 +3,13 @@ require 'json'
 require 'net/https'
 require 'pry-byebug'
 
-VRO_SERVER  = 'tse-vro2-prod.tse.puppetlabs.net'
+# VRO_SERVER  = 'tse-vro2-prod.tse.puppetlabs.net'
+VRO_SERVER  = 'gaq8f1je7b0b86y.delivery.puppetlabs.net'
 VRO_PORT    = '8281'
 PACKAGE     = 'com.puppet.o11n.plugin.puppet'
 USERNAME    = 'vcoadmin'
 PASSWORD    = 'vcoadmin'
-PACKAGE_URL = "https://#{VRO_SERVER}:#{VRO_PORT}/vco/api/packages/#{PACKAGE}"
+PACKAGE_URL = "https://#{VRO_SERVER}:#{VRO_PORT}/vco/api/packages/#{PACKAGE}/"
 
 def get_url(http, u)
   uri=URI(u)
