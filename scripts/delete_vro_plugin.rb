@@ -2,10 +2,8 @@
 require 'json'
 require 'net/https'
 require 'net/ssh'
-require 'pry-byebug'
 
-# VRO_SERVER  = 'tse-vro2-prod.tse.puppetlabs.net'
-VRO_SERVER  = 'gaq8f1je7b0b86y.delivery.puppetlabs.net'
+VRO_SERVER  = 'tse-vro2-prod.tse.puppetlabs.net'
 VRO_PORT    = '8281'
 PACKAGE     = 'com.puppet.o11n.plugin.puppet'
 USERNAME    = 'vcoadmin'
@@ -30,15 +28,14 @@ def delete_url(http, u)
   delete_request.basic_auth(USERNAME, PASSWORD)
   response = http.request(delete_request)
   if response.code == "200" || 
-     response.code == "204" 
-     puts "#{u} deleted successfully."
-   else
-    pp "We have a problem!"
+    response.code == "204" 
+    puts "#{u} deleted successfully."
+  else
+    puts "Error while processing url:"
     pp u
     pp delete_request
     pp response
     pp response.body
-    # raise Net::HTTPBadResponse
   end
 end
 
@@ -77,8 +74,6 @@ def sshcmd( host=VRO_SERVER,
     output.exitstatus
   end
 end
-
-
 
 # Main - Delete the VRO components
 http = Net::HTTP.new(VRO_SERVER, VRO_PORT)
