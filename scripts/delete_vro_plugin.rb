@@ -1,6 +1,7 @@
 #!/usr/bin/env ruby
 require 'json'
 require 'net/https'
+require 'net/ssh'
 require 'pry-byebug'
 
 # VRO_SERVER  = 'tse-vro2-prod.tse.puppetlabs.net'
@@ -10,6 +11,9 @@ PACKAGE     = 'com.puppet.o11n.plugin.puppet'
 USERNAME    = 'vcoadmin'
 PASSWORD    = 'vcoadmin'
 PACKAGE_URL = "https://#{VRO_SERVER}:#{VRO_PORT}/vco/api/packages/#{PACKAGE}/"
+
+VRO_SERVER_SSH_USER = 'root'
+VRO_SERVER_SSH_PASS = 'Qu@lity!'
 
 def get_url(http, u)
   uri=URI(u)
@@ -34,7 +38,7 @@ def delete_url(http, u)
     pp delete_request
     pp response
     pp response.body
-    raise Net::HTTPBadResponse
+    # raise Net::HTTPBadResponse
   end
 end
 
@@ -63,7 +67,20 @@ def delete_categories(http, urls)
   end
 end
 
-# Main
+def sshcmd( host=VRO_SERVER, 
+            user=VRO_SERVER_SSH_USER,
+            pass=VRO_SERVER_SSH_PASS,
+            cmd)
+  Net::SSH.start(host, user, :password => pass) do |ssh|
+    output = ssh.exec!(cmd)
+    puts output
+    output.exitstatus
+  end
+end
+
+
+
+# Main - Delete the VRO components
 http = Net::HTTP.new(VRO_SERVER, VRO_PORT)
 http.use_ssl = true
 http.verify_mode = OpenSSL::SSL::VERIFY_NONE
@@ -72,3 +89,14 @@ urls_to_delete = get_categories(http)
 delete_categories(http, urls_to_delete)
 delete_vro_package(http)
 
+# Perform the bash commands that complete the uninstall
+commands = [
+  'service vco-server stop',
+  'sleep 10',
+  'rm -f /usr/lib/vco/app-server/plugins/o11nplugin-puppet.dar',
+  'sed -i \'/Puppet/d\' /etc/vco/app-server/plugins/_VSOPluginInstallationVersion.xml',
+  'service vco-configurator restart',
+  'sleep 5',
+  'service vco-server start'
+]
+commands.each {|c| sshcmd(c)}
