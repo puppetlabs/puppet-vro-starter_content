@@ -247,3 +247,7 @@ curl -s -X PUT -H "Content-type: application/json" \
 }' \
 https://$master_hostname:4433/classifier-api/v1/groups/$agent_specified_env_group_id | python -m json.tool
 echo
+#
+# Ensure that the puppet-strings gem is installed for role class summaries in Puppet component of vRA
+#
+/opt/puppetlabs/bin/puppet resource package puppet-strings provider=puppet_gem ensure=latest
