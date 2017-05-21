@@ -1,5 +1,7 @@
 # vRealize Automation Plug-in Starter Content Pack
 
+> Preserving legacy content for use with pre-Puppet-Component IaaS blueprints and Event Broker Subscriptions
+
 ## Introduction
 
 This repository provides starter Puppet content for the [Puppet plug-in for vRealize Automation](https://solutionexchange.vmware.com/admin/products/133777) (vRO and vRA). It shows you how Puppet code is organized to make self-provisioning easy and can create 5 different machine types out of the box:
