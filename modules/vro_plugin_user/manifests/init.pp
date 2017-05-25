@@ -30,9 +30,10 @@ class vro_plugin_user (
 ##Create system user.
 
   user { $vro_plugin_user:
-    ensure   => present,
-    shell    => '/bin/bash',
-    password => $vro_password_hash,
+    ensure     => present,
+    shell      => '/bin/bash',
+    password   => $vro_password_hash,
+    managehome => true,
   }
 
 ## Manage /etc/sudoers.d/vro-plugin-user file.  This allows and disallows sudo commands.
