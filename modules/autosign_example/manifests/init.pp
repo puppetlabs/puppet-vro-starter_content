@@ -1,4 +1,4 @@
-class autosign_example (String $puppet_autosign_shared_secret = 'S3cr3tP@ssw0rd!') {
+class autosign_example (String $puppet_autosign_shared_secret = "S3cr3tP@ssw0rd!") {
 
   file { '/etc/puppetlabs/puppet/autosign.rb' :
     ensure  => file,
