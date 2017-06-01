@@ -15,10 +15,12 @@ With vRA 7.3 and the Puppet plug-in for vRealize Automation 3.0, building Puppet
 
 Here's your high-level plan to get started with vRA 7.3 Enterprise to take advantage of the new GUI Puppet components:
 - Create a Puppet Enterprise master and follow the instructions at the bottom of this page to install the starter content.
-- [Remove any previous Puppet plug-ins](https://docs.puppet.com/pe/latest/vro_intro.html#removing-previous-versions-of-the-puppet-plug-in) and install the [Puppet plug-in for vRealize Automation 3.0](https://solutionexchange.vmware.com/store/products/puppet-plugin-for-vrealize-automation) into the **embedded vRO that comes in your vRA appliance (external vRO servers are not supported in this case at this time)**.
+- [Remove any previous Puppet plug-ins](https://docs.puppet.com/pe/latest/vro_intro.html#removing-previous-versions-of-the-puppet-plug-in) and install the [Puppet plug-in for vRealize Automation 3.0](https://solutionexchange.vmware.com/store/products/puppet-plugin-for-vrealize-automation) into vRO.
 - Follow the [vRA 7.3 docs to add a Puppet endpoint](http://pubs.vmware.com/vrealize-automation-73/index.jsp#com.vmware.vra.prepare.use.doc/GUID-7F7059C8-E80F-42E8-B0AE-32F794C6FC38.html) (points to your master), and create your Puppet Enterprise blueprints using code from this repo that is now on your PE master.
-
-> Note: If you're not using vRA 7.3 Enterprise, or plan to use the legacy Event Broker Subscriptions workflow, or are just using vRO without vRA, then you may install the Puppet plug-in into either the embedded vRO or an external vRO appliance.
+-- Puppet endpoint - username: [vro-plugin-user](https://github.com/puppetlabs/puppet-vro-starter_content/blob/production/modules/vro_plugin_user/manifests/init.pp#L7)
+-- Puppet endpoint - password: [puppetlabs](https://github.com/puppetlabs/puppet-vro-starter_content/blob/production/modules/vro_plugin_user/manifests/init.pp#L8-L9)
+-- Puppet endpoint - use sudo: [true](https://github.com/puppetlabs/puppet-vro-starter_content/blob/production/modules/vro_plugin_user/templates/vro_sudoer_file.epp)
+-- Puppet component on blueprints - shared secret (cert autosigning): [S3cr3tP@ssw0rd!](https://github.com/puppetlabs/puppet-vro-starter_content/blob/production/modules/autosign_example/manifests/init.pp#L1)
 
 > Note: if you are using vRealize 6.x or 7.0 through 7.2, then use the "iaas_eventbroker" branch of this repo.
 
