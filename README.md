@@ -22,7 +22,7 @@ Here's your high-level plan to get started with vRA 7.3 Enterprise to take advan
   * Puppet endpoint - use sudo: [true](https://github.com/puppetlabs/puppet-vro-starter_content/blob/production/modules/vro_plugin_user/templates/vro_sudoer_file.epp)
   * Puppet component on blueprints - shared secret (cert autosigning): [S3cr3tP@ssw0rd!](https://github.com/puppetlabs/puppet-vro-starter_content/blob/production/modules/autosign_example/manifests/init.pp#L1)
 
-> Note: if you are using vRealize 6.x or 7.0 through 7.2, then use the "iaas_eventbroker" branch of this repo.
+> Note: if you are using vRealize 6.x or 7.0 through 7.2, then use the ["iaas_eventbroker" branch](https://github.com/puppetlabs/puppet-vro-starter_content/tree/iaas_eventbroker) of this repo.
 
 vRA 7.3 Puppet docs:
 - [Create a Puppet Endpoint](http://pubs.vmware.com/vrealize-automation-73/index.jsp#com.vmware.vra.prepare.use.doc/GUID-7F7059C8-E80F-42E8-B0AE-32F794C6FC38.html)
