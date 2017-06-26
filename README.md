@@ -39,7 +39,7 @@ Installation with git
 git clone https://github.com/puppetlabs/puppet-vro-starter_content.git
 cd puppet-vro-starter_content
 sudo bash scripts/vra_nc_setup.sh
-sudo puppet agent -t
+sudo /opt/puppetlabs/bin/puppet agent -t
 ```
 
 Installation with curl
@@ -47,7 +47,7 @@ Installation with curl
 curl -sSL https://github.com/puppetlabs/puppet-vro-starter_content/archive/production.tar.gz | tar -zx
 cd puppet-vro-starter_content-production
 sudo bash scripts/vra_nc_setup.sh
-sudo puppet agent -t
+sudo /opt/puppetlabs/bin/puppet agent -t
 ```
 
 Special thanks for creation and testing of this starter content go to Abir Majumdar, Tommy Speigner, Erik Dasher, Kai Pak, Tyler Pace, Garrett Guillotte, Colin Brock, Justin May, Bryan Jen, Lindsey Smith, Jeremy Adams and the whole Puppet TSE team.
