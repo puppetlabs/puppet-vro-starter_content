@@ -250,4 +250,5 @@ echo
 #
 # Ensure that the puppet-strings gem is installed for role class summaries in Puppet component of vRA
 #
+/opt/puppetlabs/bin/puppet resource package rgen provider=puppet_gem ensure=latest
 /opt/puppetlabs/bin/puppet resource package puppet-strings provider=puppet_gem ensure=latest
