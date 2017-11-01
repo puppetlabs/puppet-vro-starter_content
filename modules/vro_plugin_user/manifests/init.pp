@@ -33,6 +33,7 @@ class vro_plugin_user (
     ensure     => present,
     shell      => '/bin/bash',
     password   => $vro_password_hash,
+    groups     => ['pe-puppet'],
     managehome => true,
   }
 
