@@ -71,17 +71,6 @@ error_checking()
 error_checking
 
 #
-# Fix hiera.yaml to include common.yaml in hierarchy in PE 2017.3.x or above
-#
-if grep -q 2017.3 /opt/puppetlabs/server/pe_version
-then
-  echo "Saving old hiera.yaml as /etc/puppetlabs/puppet/hiera.yaml.vra_bak"
-  cp /etc/puppetlabs/puppet/hiera.yaml /etc/puppetlabs/puppet/hiera.yaml.vra_bak
-  echo "Replacing hiera.yaml with common.yaml-aware version"
-  curl -s -k https://gist.githubusercontent.com/jpadams/05cc2a1dc86bd1d2a75cc9e45f1595fd/raw/f5460a44c3918e30d8f5690e8abebda0fcb4e827/hiera.yaml -o /etc/puppetlabs/puppet/hiera.yaml
-fi
-
-#
 # Determine the uuids for groups that are created during PE install but with randomly generated uuids
 #
 find_guid()
