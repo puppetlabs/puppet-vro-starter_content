@@ -19,9 +19,6 @@ vro-plugin-user ALL = (root) NOPASSWD: !/opt/puppetlabs/bin/puppet node purge pe
 vro-plugin-user ALL = (root) NOPASSWD: /opt/puppetlabs/bin/puppet resource service puppet ensure=stopped
 vro-plugin-user ALL = (root) NOPASSWD: /opt/puppetlabs/bin/puppet resource service puppet ensure=running enable=true
 vro-plugin-user ALL = (root) NOPASSWD: /bin/cp /etc/puppetlabs/puppet/ssl/ca/ca_crl.pem /etc/puppetlabs/puppet/ssl/crl.pem
-# for getRoleClassesWithDescriptions action
 vro-plugin-user ALL = (root) NOPASSWD: /opt/puppetlabs/bin/puppet strings *
-# for getEnvironments action
-vro-plugin-user ALL = (root) NOPASSWD: ls -1 *
-# Use find if you don't use puppet strings. But puppet strings are preferred.
-#vro-plugin-user ALL = (root) NOPASSWD: find *
+vro-plugin-user ALL = (root) NOPASSWD: /bin/find /etc/puppetlabs/code/environments/*
+vro-plugin-user ALL = (root) NOPASSWD: /bin/ls -1 /etc/puppetlabs/code/environments/
