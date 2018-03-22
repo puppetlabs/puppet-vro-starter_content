@@ -16,6 +16,7 @@ alternate_environment=dev
 autosign_example_class=autosign_example
 vro_user_class=vro_plugin_user
 vro_sshd_class=vro_plugin_sshd
+vra_setup_class=vra_puppet_plugin_prep
 
 all_nodes_id='00000000-0000-4000-8000-000000000000'
 roles_group_id='235a97b3-949b-48e0-8e8a-000000000666'
@@ -135,7 +136,7 @@ curl -s -X PUT -H 'Content-Type: application/json' \
           "'$master_hostname'"
         ]
       ],
-    "classes": { "'$autosign_example_class'": {}, "'$vro_user_class'": {}, "'$vro_sshd_class'": {} }
+    "classes": { "'$vra_setup_class'": {} }
   }' \
   https://$master_hostname:4433/classifier-api/v1/groups/$autosign_and_user_group_id | python -m json.tool
 echo
