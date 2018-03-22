@@ -23,6 +23,7 @@ mod 'puppetlabs-puppetserver_gem', '0.2.0'
 
 # Forge Community Modules
 
+mod 'pltraining-rbac', '0.0.6'
 mod 'crayfishx-firewalld', '3.1.4'
 mod 'puppet-iis', '2.0.2'
 mod 'puppet-staging', '2.0.1'
