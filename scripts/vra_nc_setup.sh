@@ -64,7 +64,9 @@ error_checking()
   --cacert $cacert \
   "https://$master_hostname:4433/classifier-api/v1/groups" | grep -q code_manager_auto_configure
   if [ $? -eq 0 ]; then
-    echo "ERROR: It appears that code manager is being used. This script can not continue."
+    echo "ERROR: It appears that code manager is being used. This script cannot continue."
+    echo "Instead, use desired modules from the Puppetfile and use in your own control-repo's Puppetfile."
+    echo "At a minimum, you'll want 'vra_puppet_plugin_prep' to set up your master for the integration."
     exit 1
   fi
 }
