@@ -96,6 +96,7 @@ echo 'Copying vRO starter content repo into /etc/puppetlabs/code/environments'
 mkdir -p /etc/puppetlabs/code/environments/$alternate_environment
 rm -rf /etc/puppetlabs/code/environments/$alternate_environment/*
 cp -R * /etc/puppetlabs/code/environments/$alternate_environment
+r10k puppetfile install --moduledir /etc/puppetlabs/code/environments/$alternate_environment/modules --verbose
 
 # Put a copy in production
 echo "Duplicating $alternate_environment contents into production"
