@@ -40,12 +40,3 @@ mod 'liamjbennett-win_facts', '0.0.2'
 
 mod 'vra_puppet_plugin_prep',
   :git => 'https://github.com/puppetlabs/puppet-vra_puppet_plugin_prep'
-
-mod 'autosign_example',
-  :git => 'https://github.com/puppetlabs/puppet-vro-autosign_example'
-
-mod 'vro_plugin_user',
-  :git => 'https://github.com/puppetlabs/puppet-vro-vro_plugin_user'
-
-mod 'vro_plugin_sshd',
-  :git => 'https://github.com/puppetlabs/puppet-vro-vro_plugin_sshd'
