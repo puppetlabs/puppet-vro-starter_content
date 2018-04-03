@@ -1,6 +1,0 @@
-name          'liamjbennett-win_facts'
-version       '0.0.2'
-author        'liamjbennett'
-license       'Apache License, Version 2.0'
-summary       'Module to install additional useful windows facter facts'
-project_page  'https://github.com/liamjbennett/puppet-win_facts'
