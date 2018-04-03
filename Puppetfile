@@ -38,7 +38,7 @@ mod 'liamjbennett-win_facts', '0.0.2'
 
 # Module Content from git
 
-mode 'vra_puppet_plugin_prep'
+mod 'vra_puppet_plugin_prep'
   :git => 'https://github.com/jessereynolds/puppet-vra_puppet_plugin_prep'
 
 mod 'autosign_example',
