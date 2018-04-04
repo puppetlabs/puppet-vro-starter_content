@@ -51,7 +51,7 @@ error_checking()
 
   # Check to see if script is being run on a puppet master
   if [ ! -f /opt/puppetlabs/server/bin/puppetserver ]; then
-    echo "ERROR: This script should only be run by the root user or via sudo."
+    echo "ERROR: This script should only be run on the Puppet master server."
     exit 1
   fi
 
