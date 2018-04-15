@@ -18,12 +18,10 @@ mod 'puppetlabs-stdlib', '4.12.0'
 mod 'puppetlabs-concat', '2.2.0'
 mod 'puppetlabs-powershell', '1.0.6'
 mod 'puppetlabs-registry', '1.1.3'
-mod 'puppetlabs-inifile', '1.6.0'
 mod 'puppetlabs-puppetserver_gem', '0.2.0'
 
 # Forge Community Modules
 
-mod 'pltraining-rbac', '0.0.6'
 mod 'crayfishx-firewalld', '3.1.4'
 mod 'puppet-iis', '2.0.2'
 mod 'puppet-staging', '2.0.1'
@@ -32,11 +30,15 @@ mod 'puppet-windowsfeature', '2.0.0'
 mod 'puppet/hiera', '2.1.2'
 mod 'reidmv-unzip', '0.1.2'
 mod 'stahnma-epel', '1.3.0'
-mod 'herculesteam-augeasproviders_core', '2.1.3'
-mod 'herculesteam-augeasproviders_ssh', '2.5.0'
 mod 'liamjbennett-win_facts', '0.0.2'
 
-# Module Content from git
+# Modules to prep Puppet Enterprise Master:
+# You can add these to your own Puppetfile
+# and classify your master with 'vra_puppet_plugin_prep'
 
+mod 'herculesteam-augeasproviders_core', '2.1.3'
+mod 'herculesteam-augeasproviders_ssh', '2.5.0'
+mod 'puppetlabs-inifile', '1.6.0'
+mod 'pltraining-rbac', '0.0.6'
 mod 'vra_puppet_plugin_prep',
   :git => 'https://github.com/puppetlabs/puppet-vra_puppet_plugin_prep'
