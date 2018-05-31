@@ -1,19 +1,19 @@
-# vRealize Automation Plug-in Starter Content Pack for vRA 7.3 and Puppet plug-in for vRealize 3.0
+# vRealize Automation Plug-in Starter Content Pack for vRA 7.4 and Puppet plug-in for vRealize 3.1
 
 ## Introduction
 
-This repository provides "batteries-included" starter Puppet content for the [Puppet plug-in for vRealize Automation 3.0](https://solutionexchange.vmware.com/store/products/puppet-plugin-for-vrealize-automation). It shows you how Puppet code is organized to make self-service provisioning easy and can create 5 different machine types out of the box:
+This repository provides "batteries-included" starter Puppet content for the [Puppet plug-in for vRealize Automation 3.1](https://solutionexchange.vmware.com/store/products/puppet-plugin-for-vrealize-automation). It shows you how Puppet code is organized to make self-service provisioning easy and can create 5 different machine types out of the box:
 - Linux base server
 - Linux MySQL server
 - Linux web server
 - Windows base server
 - Windows web server
 
-With vRA 7.3 and the Puppet plug-in for vRealize Automation 3.0, building Puppet Enterprise blueprints is easier than ever with PE components now built directly into the vRA Enterprise GUI. While creating blueprints, you simply drag and drop the Puppet component onto the blueprint and fill in a couple of text boxes. No need to jump back and forth from vRA to vRO to get set up. Even better, Puppet role classes are now read dynamically from your Puppet Server, so you need only pick from the list instead of typing classes out manually.
+With vRA 7.3 & 7.4 and the Puppet plug-in for vRealize Automation 3.1, building Puppet Enterprise blueprints is easier than ever with PE components now built directly into the vRA Enterprise GUI. While creating blueprints, you simply drag and drop the Puppet component onto the blueprint and fill in a couple of text boxes. No need to jump back and forth from vRA to vRO to get set up. Even better, Puppet role classes are now read dynamically from your Puppet Server, so you need only pick from the list instead of typing classes out manually.
 
 ## Getting started
 
-Here's your high-level plan to get started with vRA 7.3 Enterprise to take advantage of the new GUI Puppet components:
+Here's your high-level plan to get started with vRA 7.3 & 7.4 Enterprise to take advantage of the new GUI Puppet components:
 - Create a Puppet Enterprise master and follow the instructions at the bottom of this page to install the starter content.
 - [Remove any previous Puppet plug-ins](https://docs.puppet.com/pe/latest/vro_intro.html#removing-previous-versions-of-the-puppet-plug-in) and install the [Puppet plug-in for vRealize Automation 3.0](https://solutionexchange.vmware.com/store/products/puppet-plugin-for-vrealize-automation) into vRO.
 - Follow the [vRA 7.3 docs to add a Puppet endpoint](https://docs.vmware.com/en/vRealize-Automation/7.3/com.vmware.vra.prepare.use.doc/GUID-7F7059C8-E80F-42E8-B0AE-32F794C6FC38.html) (points to your master), and create your Puppet Enterprise blueprints using code from this repo that is now on your PE master.
