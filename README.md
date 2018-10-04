@@ -2,7 +2,7 @@
 
 ## Introduction
 
-This repository provides "batteries-included" starter Puppet content for the [Puppet plug-in for vRealize Automation 3.1](https://solutionexchange.vmware.com/store/products/puppet-plugin-for-vrealize-automation). It shows you how Puppet code is organized to make self-service provisioning easy and can create 5 different machine types out of the box:
+This repository provides "batteries-included" starter Puppet content for the [Puppet plug-in for vRealize Automation 3.1](https://marketplace.vmware.com/vsx/solutions/puppet-plugin-for-vrealize-automation?ref=filter). It shows you how Puppet code is organized to make self-service provisioning easy and can create 5 different machine types out of the box:
 - Linux base server
 - Linux MySQL server
 - Linux web server
