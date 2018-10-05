@@ -15,7 +15,7 @@ With vRA 7.3 & 7.4 and the Puppet plug-in for vRealize Automation 3.1, building 
 
 Here's your high-level plan to get started with vRA 7.3 & 7.4 Enterprise to take advantage of the new GUI Puppet components:
 - Create a Puppet Enterprise master and follow the instructions at the bottom of this page to install the starter content.
-- [Remove any previous Puppet plug-ins](https://docs.puppet.com/pe/latest/vro_intro.html#removing-previous-versions-of-the-puppet-plug-in) and install the [Puppet plug-in for vRealize Automation 3.0](https://solutionexchange.vmware.com/store/products/puppet-plugin-for-vrealize-automation) into vRO.
+- [Remove any previous Puppet plug-ins](https://docs.puppet.com/pe/latest/vro_intro.html#removing-previous-versions-of-the-puppet-plug-in) and install the [Puppet plug-in for vRealize Automation 3.1](https://marketplace.vmware.com/vsx/solutions/puppet-plugin-for-vrealize-automation?ref=filter) into vRO.
 - Follow the [vRA 7.3 docs to add a Puppet endpoint](https://docs.vmware.com/en/vRealize-Automation/7.3/com.vmware.vra.prepare.use.doc/GUID-7F7059C8-E80F-42E8-B0AE-32F794C6FC38.html) (points to your master), and create your Puppet Enterprise blueprints using code from this repo that is now on your PE master.
   * Puppet endpoint - username: [vro-plugin-user](https://github.com/puppetlabs/puppet-vro-starter_content/blob/production/modules/vro_plugin_user/manifests/init.pp#L7)
   * Puppet endpoint - password: [puppetlabs](https://github.com/puppetlabs/puppet-vro-starter_content/blob/production/modules/vro_plugin_user/manifests/init.pp#L8-L9)
