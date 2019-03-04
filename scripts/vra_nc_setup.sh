@@ -62,7 +62,7 @@ error_checking()
   --cert   $cert \
   --key    $key \
   --cacert $cacert \
-  "https://$master_hostname:4433/classifier-api/v1/groups" | grep -q code_manager_auto_configure
+  "https://$master_hostname:4433/classifier-api/v1/groups" | grep -q code_manager_auto_configure..true
   if [ $? -eq 0 ]; then
     echo "ERROR: It appears that code manager is being used. This script cannot continue."
     echo "Instead, use desired modules from the Puppetfile and use in your own control-repo's Puppetfile."
