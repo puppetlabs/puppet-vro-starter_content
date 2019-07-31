@@ -1,8 +1,8 @@
-# vRealize Automation Plug-in Starter Content Pack for vRA 7.4 and Puppet plug-in for vRealize 3.1
+# vRealize Automation Plug-in Starter Content Pack for vRA 7.4 and Puppet plug-in for vRealize 3.2
 
 ## Introduction
 
-This repository provides "batteries-included" starter Puppet content for the [Puppet plug-in for vRealize Automation 3.1](https://marketplace.vmware.com/vsx/solutions/puppet-plugin-for-vrealize-automation?ref=filter). It shows you how Puppet code is organized to make self-service provisioning easy and can create 5 different machine types out of the box:
+This repository provides "batteries-included" starter Puppet content for the [Puppet plug-in for vRealize Automation 3.2](https://marketplace.vmware.com/vsx/solutions/puppet-plugin-for-vrealize-automation?ref=filter). It shows you how Puppet code is organized to make self-service provisioning easy and can create 5 different machine types out of the box:
 - Linux base server
 - Linux MySQL server
 - Linux web server
