@@ -9,7 +9,7 @@ This repository provides "batteries-included" starter Puppet content for the [Pu
 - Windows base server
 - Windows web server
 
-With vRA 7.3 & 7.4 and the Puppet plug-in for vRealize Automation 3.1, building Puppet Enterprise blueprints is easier than ever with PE components now built directly into the vRA Enterprise GUI. While creating blueprints, you simply drag and drop the Puppet component onto the blueprint and fill in a couple of text boxes. No need to jump back and forth from vRA to vRO to get set up. Even better, Puppet role classes are now read dynamically from your Puppet Server, so you need only pick from the list instead of typing classes out manually.
+With vRA 7.3 & 7.4 and the Puppet plug-in for vRealize Automation 3.x, building Puppet Enterprise blueprints is easier than ever with PE components now built directly into the vRA Enterprise GUI. While creating blueprints, you simply drag and drop the Puppet component onto the blueprint and fill in a couple of text boxes. No need to jump back and forth from vRA to vRO to get set up. Even better, Puppet role classes are now read dynamically from your Puppet Server, so you need only pick from the list instead of typing classes out manually.
 
 ## Getting started
 
