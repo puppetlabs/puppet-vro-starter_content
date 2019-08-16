@@ -39,6 +39,6 @@ mod 'liamjbennett-win_facts', '0.0.2'
 mod 'herculesteam-augeasproviders_core', '2.1.3'
 mod 'herculesteam-augeasproviders_ssh', '2.5.0'
 mod 'puppetlabs-inifile', '1.6.0'
-mod 'pltraining-rbac', '0.0.6'
+mod 'pltraining-rbac', '0.0.8'
 mod 'vra_puppet_plugin_prep',
   :git => 'https://github.com/puppetlabs/puppet-vra_puppet_plugin_prep'
